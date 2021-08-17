@@ -17,7 +17,13 @@ A Zero-configuration TypeScript transpiler and bundler.
 
 ## How to use?
 
-1. Make your project structure similar as following:
+1. Install
+
+```bash
+npm i -g https://github.com/e2tox/typescript-bundler
+```
+
+2. Make your project structure similar as following:
 
 ```
 Project
