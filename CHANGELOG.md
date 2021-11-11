@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- markdownlint-disable MD024 -->
 
+## [1.0.1] - 2021-11-02
+
+### Add
+
+- Support AgentFramework 2.0.1
+
+## [1.0.0-rc.6] - 2021-11-02
+
+### Add
+
+- Support AgentFramework 2
+
 ## [1.0.0-rc.2] - 2021-08-07
 
 ### Add

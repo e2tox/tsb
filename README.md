@@ -16,11 +16,10 @@ A Zero-configuration TypeScript transpiler and bundler.
 10. Improve `agentframework` performance
 
 ## How to use?
-
 1. Install
 
 ```bash
-npm i -g https://github.com/e2tox/typescript-bundler
+npm i -g https://github.com/e2tox/tsb
 ```
 
 2. Make your project structure similar as following:
@@ -80,6 +79,6 @@ tsb
 
 # Report Bugs
 
-https://github.com/e2tox/typescript-bundler/issues
+https://github.com/e2tox/tsb/issues
 
-Please also include a link to a repository which can reproduce the issue.
+Please also include a link to a sample code repository which can reproduce the issue.
