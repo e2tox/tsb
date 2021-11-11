@@ -19,7 +19,7 @@ A Zero-configuration TypeScript transpiler and bundler.
 1. Install
 
 ```bash
-npm i -g https://github.com/e2tox/tsb
+npm i -g git+ssh://git@github.com/e2tox/tsb.git
 ```
 
 2. Make your project structure similar as following:
