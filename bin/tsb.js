@@ -47,17 +47,17 @@ null===i&&(i=Reflect.getOwnPropertyDescriptor(e,s));let n=i;for(let r=t.length-1
 return function(s,i,n){let r;r=i?y(D.add(s),i,n):x(D.add(s.prototype)),P(r,t,e)}}D=B([(I=Reflect,function(){let t
 ;return t=Symbol.for("metadata"),I[t]||b(I,t,I.construct(Knowledge$1,[I,"metadata"]))})],D)
 ;class AgentFrameworkError extends Error{}function R(t){return(e,s,i)=>{
-m(t,e,s,i)&&("number"==typeof i?null!=s?O(t,e,s,i):M(t,e.prototype,i):j(t,e,s,i))}}function A(t,e,s){
-return Reflect.defineProperty(t,e,s),t}function $(t,e,s){return void 0!==s&&A(t,e,{value:s}),s}function N(t,e,s,i){
-const n=D.get(D),r=t+"."+String(s);let o=n.get(r);return void 0===o&&(o=i(),n.set(r,o)),A(e,s,{value:o}),o}
+m(t,e,s,i)&&("number"==typeof i?null!=s?O(t,e,s,i):M(t,e.prototype,i):j(t,e,s,i))}}function $(t,e,s){
+return Reflect.defineProperty(t,e,s),t}function A(t,e,s){return void 0!==s&&$(t,e,{value:s}),s}function N(t,e,s,i){
+const n=D.get(D),r=t+"."+String(s);let o=n.get(r);return void 0===o&&(o=i(),n.set(r,o)),$(e,s,{value:o}),o}
 class CustomInterceptors{static get v1(){return N("CustomInterceptors",this,"v1",(()=>new WeakMap))}}function _(t){
 return!!Reflect.has(t,"interceptor")||CustomInterceptors.v1.has(t.constructor)}function q(t,e,s){
-let i=Reflect.get(t,"version"),n=s();return A(t,e,{get(){const e=Reflect.get(t,"version");return i!==e&&(n=s(),i=e),n}
-}),n}class OnDemandMemberInfo{constructor(t){this.target=t}get name(){return $(this,"name",this.getName())}
+let i=Reflect.get(t,"version"),n=s();return $(t,e,{get(){const e=Reflect.get(t,"version");return i!==e&&(n=s(),i=e),n}
+}),n}class OnDemandMemberInfo{constructor(t){this.target=t}get name(){return A(this,"name",this.getName())}
 getDeclaringType(){return"object"==typeof this.target?this.target.constructor:this.target}get declaringType(){
-return $(this,"declaringType",this.getDeclaringType())}get kind(){return $(this,"kind",this.getKind())}get annotation(){
-return $(this,"annotation",this.getAnnotation())}get version(){const t=this.annotation;return t?t.v:0}get type(){
-return $(this,"type",this.getType())}get ownAttributes(){const t=this.annotation
+return A(this,"declaringType",this.getDeclaringType())}get kind(){return A(this,"kind",this.getKind())}get annotation(){
+return A(this,"annotation",this.getAnnotation())}get version(){const t=this.annotation;return t?t.v:0}get type(){
+return A(this,"type",this.getType())}get ownAttributes(){const t=this.annotation
 ;if(t)return q(this,"ownAttributes",(()=>t.a))}get ownInterceptors(){const t=this.annotation
 ;if(t)return q(this,"ownInterceptors",(()=>{const e=t.a;if(e){const t=e.filter(_);if(t.length)return t}}))}
 hasOwnAttribute(t){const e=this.ownAttributes;return!!e&&(t?e.some((e=>e instanceof t)):e.length>0)}getOwnAttribute(t){
@@ -83,7 +83,7 @@ return q(this,"intercepted",(()=>this.hasInterceptor()))}parameter(t){let e=this
 const t=this.annotation;return!(!t||!t.parameters)}getParameter(t){const e=this.annotation
 ;if(e&&e.parameters&&e.parameters.has(t))return this.parameter(t)}getParameterTypes(){
 return this.getOwnMetadata("design:paramtypes")}get parameterTypes(){
-return $(this,"parameterTypes",this.getParameterTypes())}getParameters(){
+return A(this,"parameterTypes",this.getParameterTypes())}getParameters(){
 const t=new Array,e=this.annotation,s=e&&e.parameters;if(s)for(const e of s.keys())t.unshift(this.parameter(e));return t
 }addAttribute(t){"constructor"===this.key?k(t,this.target):j(t,this.target,this.key)}hasOwnMetadata(t){
 const e=this.annotation;return!(!e||!e.m)&&e.m.has(t)}getOwnMetadata(t){const e=this.annotation
@@ -93,16 +93,16 @@ class TypeInfos{static get v1(){return N("TypeInfos",this,"v1",(()=>new WeakMap)
 class OnDemandTypeInfo extends OnDemandPropertyInfo{constructor(t){super(t,"constructor"),this.properties=new Map}
 static find(t){const e=TypeInfos.v1.get(t);if(e)return e;const s=new OnDemandTypeInfo(t);return TypeInfos.v1.set(t,s),s}
 get static(){return OnDemandTypeInfo.find(this.declaringType)}get prototype(){
-return $(this,"prototype",OnDemandTypeInfo.find(this.declaringType.prototype))}getType(){return this.declaringType}
+return A(this,"prototype",OnDemandTypeInfo.find(this.declaringType.prototype))}getType(){return this.declaringType}
 getName(){return this.declaringType.name}getKind(){
 return this.target===this.declaringType?MemberKinds.StaticClass:MemberKinds.Class}getBase(){
 const t=Reflect.getPrototypeOf(this.target);let e
 ;return e=t?t===Function.prototype||t===Object.prototype||U(t)?null:OnDemandTypeInfo.find(t):null,e}getTypes(){
 const t=[];let e=this;do{t.unshift(e),e=e.base}while(e);return t}getAnnotation(){return E(this.target)}
-getTypeAnnotation(){return T(this.target)}get annotation(){return $(this,"annotation",this.getAnnotation())}
-get typeAnnotation(){return $(this,"typeAnnotation",this.getTypeAnnotation())}get version(){const t=this.typeAnnotation
+getTypeAnnotation(){return T(this.target)}get annotation(){return A(this,"annotation",this.getAnnotation())}
+get typeAnnotation(){return A(this,"typeAnnotation",this.getTypeAnnotation())}get version(){const t=this.typeAnnotation
 ;return t?t.v:0}get descriptor(){return Reflect.getOwnPropertyDescriptor(this.declaringType.prototype,this.key)}
-get base(){return $(this,"base",this.getBase())}get types(){return $(this,"types",this.getTypes())}property(t){
+get base(){return A(this,"base",this.getBase())}get types(){return A(this,"types",this.getTypes())}property(t){
 let e=this.properties.get(t);return e||(e=new OnDemandPropertyInfo(this.target,t,this),this.properties.set(t,e)),e}
 hasOwnProperties(){const t=this.typeAnnotation;return void 0!==t&&void 0!==t.properties}getOwnProperty(t){
 const e=this.typeAnnotation;if(e&&e.properties&&e.properties.has(t))return this.property(t)}getProperty(t){
@@ -122,14 +122,14 @@ const s=this.interceptor||(this.interceptor=function(t){const e=CustomIntercepto
 ;if(e)return Reflect.construct(e[0],[t,e[1]]);const s=Reflect.get(t,"interceptor")
 ;return s&&"object"==typeof s&&"function"==typeof s.intercept?s:void 0}(this.attribute))
 ;if(s)return s.intercept(this.next,t,e)
-;const i=this.next.invoke(t,e),n=Reflect.getOwnPropertyDescriptor(this.next,"invoke");return A(this,"invoke",{
+;const i=this.next.invoke(t,e),n=Reflect.getOwnPropertyDescriptor(this.next,"invoke");return $(this,"invoke",{
 value:n?n.value:this.next.invoke.bind(this.next)}),i}}class OnDemandInterceptorFactory{static addInterceptors(t,e){
 if(e)for(const s of e)t=new OnDemandInterceptorInvocation(t,s);return t}static addInterceptor(t,e){
 return new OnDemandInterceptorInvocation(t,e)}}class MethodParameterInvocation{constructor(t){this.design=t}invoke(t,e){
 return t[this.design.index]}}class OnDemandParameterInterceptor{constructor(t){this.design=t}get interceptor(){
 if(this.invocations)return this}get invocations(){const t=new Map;for(const e of this.design.getParameters()){
 const s=e.index,i=e.ownInterceptors;if(i){const n=new MethodParameterInvocation(e)
-;t.set(s,OnDemandInterceptorFactory.addInterceptors(n,i))}}return $(this,"invocations",t.size?t:void 0)}
+;t.set(s,OnDemandInterceptorFactory.addInterceptors(n,i))}}return A(this,"invocations",t.size?t:void 0)}
 intercept(t,e,s){const i=Array.prototype.slice.call(e,0);for(const[t,n]of this.invocations.entries())i[t]=n.invoke(e,s)
 ;return t.invoke(i,s)}}class GetterSetterInvocation{constructor(t,e){this.design=t,this.cache=e}invoke(t,e){
 const s=this.design.key;if(null==e)throw new AgentFrameworkError("InvalidReceiver")
@@ -137,7 +137,7 @@ const s=this.design.key;if(null==e)throw new AgentFrameworkError("InvalidReceive
 ;const t=this.design.declaringType.prototype;return Reflect.has(t,s)?Reflect.get(t,s):void 0}}}class MethodInvocation{
 constructor(t,e){this.target=t,this.design=e}invoke(t,e){return Reflect.apply(this.target,e,t)}}
 class AgentTypeInvocation{constructor(t,e){this.target=t,this.design=e}invoke([t],e){
-const s=A(class extends e{},"name",{value:t+"$"});return K(s,this.target),s}}class OnDemandInvocationFactory{
+const s=$(class extends e{},"name",{value:`${t}$`});return K(s,this.target),s}}class OnDemandInvocationFactory{
 static createAgentInvocation(t,e,s){let i=new AgentTypeInvocation(t,e);i=OnDemandInterceptorFactory.addInterceptor(i,s)
 ;const n=e.property("constructor")
 ;return n.version&&(i=OnDemandInterceptorFactory.addInterceptors(i,n.ownInterceptors)),i}
@@ -151,21 +151,21 @@ let s=new MethodInvocation(t,e)
 OnDemandInterceptorFactory.addInterceptors(s,e.ownInterceptors)}}class OnDemandAgentCompiler{static makeField(t,e){
 const s=new WeakMap,i={configurable:!0,get:function(){const n=OnDemandInvocationFactory.createFieldInvocation(t,s)
 ;return i.get=function(){return n.invoke([],this)},i.set=function(){return n.invoke(arguments,this)},
-A(e,n.design.key,i),n.invoke([],this)},set:function(){const n=OnDemandInvocationFactory.createFieldInvocation(t,s)
+$(e,n.design.key,i),n.invoke([],this)},set:function(){const n=OnDemandInvocationFactory.createFieldInvocation(t,s)
 ;return i.get=function(){return n.invoke([],this)},i.set=function(){return n.invoke(arguments,this)},
-A(e,n.design.key,i),n.invoke(arguments,this)}};return i}static makeProperty(t,e,s){const i=t.key;let n=Object.create(e)
+$(e,n.design.key,i),n.invoke(arguments,this)}};return i}static makeProperty(t,e,s){const i=t.key;let n=Object.create(e)
 ;n.configurable=!0;const r=e.value,o=e.get,c=e.set;return"function"==typeof o?"function"==typeof c?(n.get=function(){
 const e=OnDemandInvocationFactory.createPropertyInvocation(o,t);n.get=function(){return e.invoke([],this)}
 ;const r=OnDemandInvocationFactory.createPropertyInvocation(c,t);return n.set=function(){r.invoke(arguments,this)},
-A(s,i,n),e.invoke([],this)},n.set=function(){const e=OnDemandInvocationFactory.createPropertyInvocation(o,t)
+$(s,i,n),e.invoke([],this)},n.set=function(){const e=OnDemandInvocationFactory.createPropertyInvocation(o,t)
 ;n.get=function(){return e.invoke([],this)};const r=OnDemandInvocationFactory.createPropertyInvocation(c,t)
-;return n.set=function(){r.invoke(arguments,this)},A(s,i,n),r.invoke(arguments,this)}):n.get=function(){
+;return n.set=function(){r.invoke(arguments,this)},$(s,i,n),r.invoke(arguments,this)}):n.get=function(){
 const e=OnDemandInvocationFactory.createPropertyInvocation(o,t);return n.get=function(){return e.invoke([],this)},
-A(s,i,n),e.invoke([],this)}:"function"==typeof c?n.set=function(){
+$(s,i,n),e.invoke([],this)}:"function"==typeof c?n.set=function(){
 const e=OnDemandInvocationFactory.createPropertyInvocation(c,t);return n.set=function(){return e.invoke(arguments,this)
-},A(s,i,n),e.invoke(arguments,this)}:"function"==typeof r?n.value=function(){
+},$(s,i,n),e.invoke(arguments,this)}:"function"==typeof r?n.value=function(){
 let e=OnDemandInvocationFactory.createPropertyInvocation(r,t);return n.value=function(){return e.invoke(arguments,this)
-},A(s,i,n),e.invoke(arguments,this)}:n=this.makeField(t,s),n}}class ClassConstructors{static get v1(){
+},$(s,i,n),e.invoke(arguments,this)}:n=this.makeField(t,s),n}}class ClassConstructors{static get v1(){
 return N("ClassConstructors",this,"v1",(()=>new WeakMap))}}class ClassMembers{static get v1(){
 return N("ClassMembers",this,"v1",(()=>new WeakMap))}}class AgentAttribute{get interceptor(){return this}
 intercept(t,e,s){const[,i,n]=e;if(n.version){const r=n.target=Reflect.construct(i,[s,n]);return K(r,s),
@@ -221,7 +221,7 @@ get ModuleKind(){return this.runtime.ModuleKind}get version(){return this.info.v
 return this.runtime.readConfigFile(t,this.runtime.sys.readFile)}resolve(e,s){return t.resolve(e,s)}formatDiagnostics(t){
 return this.runtime.formatDiagnosticsWithColorAndContext(t,this.formatDiagnosticsHost)}}
 F([J(),C("design:type",Environment)],TypeScript.prototype,"env",void 0);class CliService{get name(){return"tsb"}
-get version(){return"1.0.1"}get timestamp(){return"2021-11-11T01:17:54.020Z"}}function tt(e){const s=[];let i=e
+get version(){return"1.0.2"}get timestamp(){return"2022-03-31T04:21:51.102Z"}}function tt(e){const s=[];let i=e
 ;for(;i;){s.push(i);const e=t.dirname(i);if(e===i)break;i=e}return s.reverse()}class TypeScriptFileSystem{constructor(){
 this.runtime=this.ts.runtime,this.sys=this.runtime.sys}get args(){return this.sys.args}get newLine(){
 return this.sys.newLine}get useCaseSensitiveFileNames(){return this.sys.useCaseSensitiveFileNames}mkdir(t){const e=tt(t)
@@ -425,7 +425,7 @@ F([J(),C("design:type",TypeScriptFileSystem)],PropertyFileParser.prototype,"fs",
 const e=this.fs.readFile(t,"utf-8");if(e)return require("js-yaml").load(e)}write(t,e){
 this.fs.writeFile(t,require("js-yaml").dump(e))}}
 F([J(),C("design:type",TypeScriptFileSystem)],YamlFileParser.prototype,"fs",void 0);class SettingsLoader{
-applySettings(t,e,s){if("object"!=typeof e)throw new Error("Invalid settings file: "+t);const i=[]
+applySettings(t,e,s){if("object"!=typeof e)throw new Error(`Invalid settings file: ${t}`);const i=[]
 ;for(const t of Object.keys(e))"function"!=typeof e[t]&&(s[t]=e[t],i.push(t))
 ;1===i.length?console.log(Z(`Applied a key from '${t}'`)):i.length?console.log(Z(`Applied ${i.length} keys from '${t}'`)):console.log(Z(`No config key in '${t}'`))
 }getFile(e,s,i){const n=t.resolve(e,s+"."+i);if(this.fs.fileExists(n))return n
@@ -500,7 +500,7 @@ const i=e.project.packageInfo,r=new Map,o=i.sideEffects,c=new Set(i.files||[]),a
 ;const h=this.fs.resolvePath(s,e.artifactDirName);let p,d,f,g
 ;if(this.fs.directoryExists(h)&&this.fs.readDirectory(h).length&&c.add(e.artifactDirName),i.main){
 const e=i.main.slice(0,0-t.extname(i.main).length);p=e+".js",d=e+".mjs",f=e+".d.ts",
-console.log(Z("Found main entry in package.json: "+e))}else{const t=e.defaultEntryPathNames,i=e.defaultEntryName
+console.log(Z(`Found main entry in package.json: ${e}`))}else{const t=e.defaultEntryPathNames,i=e.defaultEntryName
 ;for(const e of t){const t=this.fs.joinPath(e,i+".js"),n=this.fs.joinPath(e,i+".mjs"),r=this.fs.joinPath(e,i+".d.ts")
 ;if(this.fs.fileExists(s,t)&&(p=t),this.fs.fileExists(s,n)&&(d=n),this.fs.fileExists(s,r)&&(f=r),p||d||f){
 console.log(Z(`Found entry from ${e}: lib: ${p}, module: ${d}, type: ${f}`));break}}}p&&c.add(p),d&&c.add(d),f&&c.add(f)
@@ -510,9 +510,9 @@ const i=this.fs.resolvePath(e.project.path,"node_modules",t,"package.json");if(t
 const e=require(i).version;g[t]=e}else g[t]=s}}}else g=void 0;const m={name:i.name,version:e.version,engines:i.engines,
 sideEffects:o,bin:ut(r),description:i.description,author:i.author,license:i.license,repository:i.repository,bugs:i.bugs,
 homepage:i.homepage,keywords:i.keywords,type:p?"commonjs":d?"module":void 0,main:p||d,module:d,"jsnext:main":d,types:f,
-typings:f,files:this.generateFiles(e,c),dependencies:g,imports:i.imports,exports:i.exports};d&&!m.exports&&(m.exports={
-".":{import:d,require:p,types:f}}),this.json.write(n,m,2),console.log("Generated package.json")}}generateFiles(t,e){
-const s=new Set;for(const i of e){const e=lt(i)
+typings:f,files:this.generateFiles(e,c),dependencies:g,imports:i.imports,exports:i.exports}
+;d&&p&&f&&!m.exports&&(m.exports={".":{import:"./"+d,require:"./"+p,types:"./"+f}}),this.json.write(n,m,2),
+console.log("Generated package.json")}}generateFiles(t,e){const s=new Set;for(const i of e){const e=lt(i)
 ;"."===e?this.fs.exists(t.outputDir,i)&&s.add(i):this.fs.directoryExists(t.outputDir,e)&&s.add(e)}return function(t){
 if(!t.size)return;const e=[];for(const s of t.keys())e.push(s);return e.sort()}(s)}}
 F([J(),C("design:type",TypeScriptFileSystem)],PackageFileBuilder.prototype,"fs",void 0),
@@ -560,7 +560,7 @@ const{type:r,generics:o}=s[n]||{};if("interface"===r||"type"===r){const s=ht(o)
 }else t+=`declare const ${i.name}_${e}: typeof ${n};\n`}if(i.name){t+=`declare namespace ${i.name} {\n`,
 t+="  export {\n"
 ;for(const{exportedName:e,localName:s}of i.exports)t+=e===s?`    ${i.name}_${e} as ${e},\n`:`    ${s} as ${e},\n`
-;t+="  };\n",t+="}"}t+=e}return t}}function ht(t){return t?`<${Array.from({length:t},((t,e)=>"_"+e)).join(", ")}>`:""}
+;t+="  };\n",t+="}"}t+=e}return t}}function ht(t){return t?`<${Array.from({length:t},((t,e)=>`_${e}`)).join(", ")}>`:""}
 function pt(t,e,s){var i;let n=!1
 ;const r=s.isClassDeclaration(e)||s.isFunctionDeclaration(e)||s.isModuleDeclaration(e)||s.isVariableStatement(e)
 ;for(const r of null!==(i=e.modifiers)&&void 0!==i?i:[])switch(r.kind){case s.SyntaxKind.ExportKeyword:
@@ -654,9 +654,9 @@ this.tsc=e.tsc,this.ast=yt({type:"Program",sourceType:"module",body:[]},{start:(
 this.ast.body.push(t)}createDeclaration(t,e){const s={start:t.getFullStart(),end:t.getEnd()};if(!e){
 const t=new DeclarationScope({range:s,helper:this.helper});return this.pushStatement(t.iife),t}
 const i=e.getText(this.sourceFile),n=new DeclarationScope({id:e,range:s,helper:this.helper}),r=this.declarations.get(i)
-;if(r){r.pushIdentifierReference(e),r.declaration.end=s.end
-;for(let t=this.ast.body.findIndex((t=>t==r.declaration))+1;t<this.ast.body.length;t++){const e=this.ast.body[t]
-;e.start=e.end=s.end}}else this.pushStatement(n.declaration),this.declarations.set(i,n);return r||n}convertStatement(t){
+;if(r){r.pushIdentifierReference(e),r.declaration.end=s.end;let t=this.ast.body.findIndex((t=>t==r.declaration))
+;for(let e=t+1;e<this.ast.body.length;e++){const t=this.ast.body[e];t.start=t.end=s.end}
+}else this.pushStatement(n.declaration),this.declarations.set(i,n);return r||n}convertStatement(t){
 if(this.tsc.isEnumDeclaration(t))return this.convertEnumDeclaration(t)
 ;if(this.tsc.isFunctionDeclaration(t))return this.convertFunctionDeclaration(t)
 ;if(this.tsc.isInterfaceDeclaration(t)||this.tsc.isClassDeclaration(t))return this.convertClassOrInterfaceDeclaration(t)
@@ -729,7 +729,7 @@ i.appendLeft(h,";\n");const e=t.getFullStart(),s=i.slice(e,t.getStart());let n=s
 for(const n of t.statements)if(h(n),e.matchesModifier(n,s.ModifierFlags.ExportDefault)&&(s.isFunctionDeclaration(n)||s.isClassDeclaration(n))){
 if(n.name)continue;o||(o=p("export_default"))
 ;const t=n.getChildren(),e=t.findIndex((t=>t.kind===s.SyntaxKind.ClassKeyword||t.kind===s.SyntaxKind.FunctionKeyword)),r=t[e],c=t[e+1]
-;c.kind>=s.SyntaxKind.FirstPunctuation&&c.kind<=s.SyntaxKind.LastPunctuation?i.appendLeft(c.getStart(),o):i.appendRight(r.getEnd()," "+o)
+;c.kind>=s.SyntaxKind.FirstPunctuation&&c.kind<=s.SyntaxKind.LastPunctuation?i.appendLeft(c.getStart(),o):i.appendRight(r.getEnd(),` ${o}`)
 }for(const t of a.values()){const e=t.pop()[0];for(const s of t)i.move(s[0],s[1],e)}
 o&&i.append(`\nexport default ${o};\n`),r.size&&i.append(`\nexport { ${[...r].join(", ")} };\n`)
 ;for(const[t,e]of c.entries())i.prepend(`import * as ${e} from "${t}";\n`);const u=new Set,l=t.getLineStarts()
@@ -740,7 +740,7 @@ if(!s.isLiteralTypeNode(t.argument)||!s.isStringLiteral(t.argument.literal))thro
 ;const e=t.argument.literal.text,n=t.getChildren(),r=n.find((t=>t.kind===s.SyntaxKind.ImportKeyword)).getStart()
 ;let o=t.getEnd();const a=n.find((t=>t.kind===s.SyntaxKind.DotToken||t.kind===s.SyntaxKind.LessThanToken))
 ;a&&(o=a.getStart());const u=function(t){let e=c.get(t);return e||(e=p(t.replace(/[^a-zA-Z0-9_$]/g,(()=>"_"))),
-c.set(t,e)),e}(e);i.overwrite(r,o,u)}}function p(t){let e=t;for(;n.has(e);)e="_"+e;return n.add(e),e}function d(t,e){
+c.set(t,e)),e}(e);i.overwrite(r,o,u)}}function p(t){let e=t;for(;n.has(e);)e=`_${e}`;return n.add(e),e}function d(t,e){
 let s=a.get(t);if(s){const t=s[s.length-1];t[1]===e[0]?t[1]=e[1]:s.push(e)}else s=[e],a.set(t,s)}}({sourceFile:i,
 helper:n});r.set(i.fileName,o.typeReferences)
 ;const c=o.code.toString(),a=s.createSourceFile(e,c),u=new Transformer(a,n).transform()
@@ -817,7 +817,7 @@ console.log(z("██╔══╝   ██╔══██╗ ██╔══█�
 console.log(z("███████╗ ██║  ██║ ██║  ██║ ╚██████╔╝ ██║  ██║")),
 console.log(z("╚══════╝ ╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝  ╚═╝  ╚═╝")),console.log())}function bt(t,e=new Date){
 const s=(e.getTime()-t.getTime())/1e3
-;return s<5?"just now":s<60?Math.floor(s)+" seconds ago":s<3600?Math.floor(s/60)+" minutes ago":(s/3600).toFixed(2)+" hours ago"
+;return s<5?"just now":s<60?`${Math.floor(s)} seconds ago`:s<3600?`${Math.floor(s/60)} minutes ago`:`${(s/3600).toFixed(2)} hours ago`
 }F([J(),C("design:type",ConfigurationBuilder)],NodeProjectBuilder.prototype,"configurationBuilder",void 0),
 F([J(),C("design:type",ArtifactBuilder)],NodeProjectBuilder.prototype,"artifactBuilder",void 0),
 F([J(),C("design:type",PackageBuilder)],NodeProjectBuilder.prototype,"packageBuilder",void 0),
@@ -831,7 +831,7 @@ console.log(Z("╚══██╔══╝ ██╔════╝ ██╔═
 console.log(Z("   ██║    ╚════██║ ██╔══██╗")),console.log(Z("   ██║    ███████║ ██████╔╝")),
 console.log(Z("   ╚═╝    ╚══════╝ ╚═════╝ "),Z("@"+t)),console.log())}(this.cli.version)
 ;const s=r.coerce(process.version).version;e.push(["Time",t.timestamp.toISOString()]);const i=t.project,n=i.packageInfo
-;e.push(["Package",n.name]);let o=n.version;t.version!==n.version&&(o=o+" → "+Z(t.version)),e.push(["Version",o])
+;e.push(["Package",n.name]);let o=n.version;t.version!==n.version&&(o+=` → ${Z(t.version)}`),e.push(["Version",o])
 ;const c=this.ts.version;let a="",u=""
 ;n.dependencies&&n.dependencies.typescript?u=n.dependencies.typescript:n.devDependencies&&n.devDependencies.typescript?u=n.devDependencies.typescript:n.engines&&n.engines.typescript&&(u=n.engines.typescript),
 u&&(a=`${c} (require ${u})`,r.satisfies(c,u)||(a=H(a))),e.push(["TypeScript Version",a||c]);let l=""
@@ -866,7 +866,7 @@ e.commands.forEach((t=>t.on("--help",(()=>console.log()))));const s=(t,s)=>{e.Co
 "unknownOption"===t&&this.i||(this.outputHelp(),console.log("  "+z(s(...e))),console.log(),process.exit(1))}}
 ;s("missingArgument",(t=>`Missing required argument ${H(`<${t}>`)}.`)),
 s("unknownOption",(t=>`Unknown option ${H(t)}.`)),
-s("optionMissingArgument",((t,e)=>"Missing required argument for option "+H(t.flags)+(e?", got "+H(e):"")));try{
+s("optionMissingArgument",((t,e)=>`Missing required argument for option ${H(t.flags)}`+(e?`, got ${H(e)}`:"")));try{
 e.parseAsync().catch((function(t){wt(),console.log(z("Build was interrupted")),console.log(z(t.stack||t.message))}))
 }catch(t){wt(),console.log(z("Program error")),console.log(z(t.stack||t.message))}}}
 ;F([J(),C("design:type",Environment)],Pt.prototype,"env",void 0),
