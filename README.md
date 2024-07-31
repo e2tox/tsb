@@ -15,11 +15,15 @@ A Zero-configuration TypeScript transpiler and bundler.
 9. No intermediate files written on disk, keep your project folder clean
 10. Improve `agentframework` performance
 
+## Note
+- 1.x for typescript < 5.0
+- 2.x for typescript >= 5.0
+
 ## How to use?
 1. Install
 
 ```bash
-npm i -g git+ssh://git@github.com/e2tox/tsb.git
+npm i -g https://github.com/e2tox/tsb
 ```
 
 2. Make your project structure similar as following:

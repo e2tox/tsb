@@ -1,6 +1,6 @@
 {
   "name": "tsb",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "engines": {
     "node": ">=8.5.0"
   },
@@ -32,6 +32,6 @@
     "sharp": "0.26.3",
     "terser": "5.3.8",
     "tslib": "2.3.1",
-    "typescript": "4.4.4"
+    "typescript": "4.9.5"
   }
 }
