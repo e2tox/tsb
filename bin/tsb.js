@@ -40,8 +40,8 @@ const e=super.get(t);if(e)return e;if(t===Function.prototype){const e=new Type(t
 ;return this.set(t,i),i}}let D=class Knowledge{static has(t){}static get(t){}static set(t,e){}static add(t){}};var I
 ;function j(t,e,s,i){const n=D.add(e),r=y(n,s,i);S(r,t),w(r),w(n)}function M(t,e,s,i){const n=D.add(e),r=y(n,s),o=v(r,i)
 ;S(o,t),w(o),w(r),w(n)}function k(t,e){const s=x(D.add(e));S(s,t),w(s)}function O(t,e,s){const i=x(D.add(e)),n=v(i,s)
-;S(n,t),w(n),w(i)}function T(t){return D.get(t)}function E(t){const e=D.get(t);if(!e)return
-;const s=Reflect.getOwnPropertyDescriptor(e.prototype,"constructor");return s?s.value:void 0}function F(t,e,s,i){
+;S(n,t),w(n),w(i)}function T(t){return D.get(t)}function F(t){const e=D.get(t);if(!e)return
+;const s=Reflect.getOwnPropertyDescriptor(e.prototype,"constructor");return s?s.value:void 0}function E(t,e,s,i){
 null===i&&(i=Reflect.getOwnPropertyDescriptor(e,s));let n=i;for(let r=t.length-1;r>=0;r--)n=t[r](e,s,n||i)
 ;n&&Reflect.defineProperty(e,s,n)}function B(t,e){for(let s=t.length-1;s>=0;s--)e=t[s](e)||e;return e}function C(t,e){
 return function(s,i,n){let r;r=i?y(D.add(s),i,n):x(D.add(s.prototype)),P(r,t,e)}}D=function(t,e,s,i){
@@ -73,7 +73,7 @@ return this.index.toString()}getKind(){let t=MemberKinds.Parameter
 ;return this.target===this.declaringType&&(t|=MemberKinds.Static),"constructor"===this.key&&(t|=MemberKinds.Class),t}
 getType(){const t=this.parent.parameterTypes;if(Array.isArray(t))return t[this.index]}}
 class OnDemandPropertyInfo extends OnDemandMemberInfo{constructor(t,e,s){super(t),this.key=e,this.parent=s,
-this.parameters=new Map}getAnnotation(){if("constructor"===this.key)return E(this.target);const t=T(this.target)
+this.parameters=new Map}getAnnotation(){if("constructor"===this.key)return F(this.target);const t=T(this.target)
 ;return t&&t.properties&&t.properties.get(this.key)}getName(){return this.key.toString()}get descriptor(){
 const t=this.annotation;return t&&t.descriptor}getKind(){
 return this.target===this.declaringType?MemberKinds.StaticProperty:MemberKinds.Property}getType(){
@@ -100,7 +100,7 @@ getName(){return this.declaringType.name}getKind(){
 return this.target===this.declaringType?MemberKinds.StaticClass:MemberKinds.Class}getBase(){
 const t=Reflect.getPrototypeOf(this.target);let e
 ;return e=t?t===Function.prototype||t===Object.prototype||U(t)?null:OnDemandTypeInfo.find(t):null,e}getTypes(){
-const t=[];let e=this;do{t.unshift(e),e=e.base}while(e);return t}getAnnotation(){return E(this.target)}
+const t=[];let e=this;do{t.unshift(e),e=e.base}while(e);return t}getAnnotation(){return F(this.target)}
 getTypeAnnotation(){return T(this.target)}get annotation(){return $(this,"annotation",this.getAnnotation())}
 get typeAnnotation(){return $(this,"typeAnnotation",this.getTypeAnnotation())}get version(){const t=this.typeAnnotation
 ;return t?t.v:0}get descriptor(){return Reflect.getOwnPropertyDescriptor(this.declaringType.prototype,this.key)}
@@ -222,8 +222,8 @@ if(!s.main)throw new Error("Package main not find: "+t.join(s.path,"package.json
 getCurrentDirectory:i.getCurrentDirectory,getNewLine:()=>i.newLine}}readFile(t){
 return this.runtime.readConfigFile(t,this.runtime.sys.readFile)}resolve(e,s){return t.resolve(e,s)}formatDiagnostics(t){
 return this.runtime.formatDiagnosticsWithColorAndContext(t,this.formatDiagnosticsHost)}}
-F([J(),C("design:type",Environment)],TypeScript.prototype,"env",void 0);class CliService{get name(){return"tsb"}
-get version(){return"2.0.0"}get timestamp(){return"2024-08-13T10:35:38.112Z"}}function et(e){const s=[];let i=e
+E([J(),C("design:type",Environment)],TypeScript.prototype,"env",void 0);class CliService{get name(){return"tsb"}
+get version(){return"2.0.0"}get timestamp(){return"2024-08-13T11:26:03.724Z"}}function et(e){const s=[];let i=e
 ;for(;i;){s.push(i);const e=t.dirname(i);if(e===i)break;i=e}return s.reverse()}class TypeScriptFileSystem{constructor(){
 this.runtime=this.ts.runtime,this.sys=this.runtime.sys}get args(){return this.sys.args}get newLine(){
 return this.sys.newLine}get useCaseSensitiveFileNames(){return this.sys.useCaseSensitiveFileNames}mkdir(t){const e=et(t)
@@ -249,29 +249,29 @@ if(!t.isAbsolute(e))throw new Error('Please use "joinPath" for relative pathname
 if(!t.isAbsolute(e))throw new Error('Please use "joinPath" for relative pathname: '+e)
 ;return i.length?this.runtime.findConfigFile(e,this.exists.bind(this),t.join(s,...i)):this.runtime.findConfigFile(e,this.exists.bind(this),s)
 }readFile(t,e){return this.sys.readFile(t,e)}write(t){this.sys.write(t)}writeFile(t,e,s){this.sys.writeFile(t,e,s)}}
-F([J(),C("design:type",TypeScript)],TypeScriptFileSystem.prototype,"ts",void 0);let st=class Service{}
-;F([J(),C("design:type",Environment)],st.prototype,"env",void 0),
-F([J(),C("design:type",TypeScript)],st.prototype,"ts",void 0),
-F([J(),C("design:type",TypeScriptFileSystem)],st.prototype,"fs",void 0),
-F([J(),C("design:type",CliService)],st.prototype,"cli",void 0),st=B([L()],st);class PackageInfoParser{read(t){
+E([J(),C("design:type",TypeScript)],TypeScriptFileSystem.prototype,"ts",void 0);let st=class Service{}
+;E([J(),C("design:type",Environment)],st.prototype,"env",void 0),
+E([J(),C("design:type",TypeScript)],st.prototype,"ts",void 0),
+E([J(),C("design:type",TypeScriptFileSystem)],st.prototype,"fs",void 0),
+E([J(),C("design:type",CliService)],st.prototype,"cli",void 0),st=B([L()],st);class PackageInfoParser{read(t){
 const e=this.ts.readFile(t);if(e.error&&console.log(this.ts.formatDiagnostics([e.error])),e.config){const s=e.config
 ;return s.path=t,s}}write(t,e){this.fs.writeFile(t,JSON.stringify(e))}}
-F([J(),C("design:type",TypeScript)],PackageInfoParser.prototype,"ts",void 0),
-F([J(),C("design:type",TypeScriptFileSystem)],PackageInfoParser.prototype,"fs",void 0);class IniFileParser{read(t){
+E([J(),C("design:type",TypeScript)],PackageInfoParser.prototype,"ts",void 0),
+E([J(),C("design:type",TypeScriptFileSystem)],PackageInfoParser.prototype,"fs",void 0);class IniFileParser{read(t){
 const e=this.fs.readFile(t,"utf-8");if(e)return require("ini").parse(e)}write(t,e){
 this.fs.writeFile(t,require("ini").stringify(e))}}
-F([J(),C("design:type",TypeScriptFileSystem)],IniFileParser.prototype,"fs",void 0);let it=class Repository extends st{
+E([J(),C("design:type",TypeScriptFileSystem)],IniFileParser.prototype,"fs",void 0);let it=class Repository extends st{
 constructor(t){if(super(),!t||!this.fs.fileExists(t,"HEAD"))throw new Error("Invalid repository path");this.path=t}
 getType(){return"git"}getHead(){const t=this.fs.readFile(this.fs.resolvePath(this.path,"HEAD"))
 ;if(t&&t.length>4)return t.slice(4).trim()}getReferenceTime(t){if(t){const e=this.fs.resolvePath(this.path,t)
 ;return i.statSync(e).ctime}}getCommit(t){if(t){const e=this.fs.readFile(this.fs.resolvePath(this.path,t))
 ;if(e&&e.length>4)return e.trim()}}getURL(){var t;const e=this.ini.read(this.fs.resolvePath(this.path,"config"))
 ;if(e)return null===(t=e['remote "origin"'])||void 0===t?void 0:t.url}}
-;F([J(),C("design:type",IniFileParser)],it.prototype,"ini",void 0),it=B([L(),C("design:paramtypes",[String])],it)
+;E([J(),C("design:type",IniFileParser)],it.prototype,"ini",void 0),it=B([L(),C("design:paramtypes",[String])],it)
 ;let nt=class ModuleService extends st{getModuleByNameDirectory(e,s){let i=this.searchPackageJsonByDirectory(e,s);if(i){
 const e=this.parser.read(i);if(e)return{info:e,path:t.dirname(i)}}}searchPackageJsonByDirectory(t,e){
 return this.ts.runtime.findConfigFile(e,this.ts.runtime.sys.fileExists,this.fs.joinPath("node_modules",t,"package.json"))
-}};F([J(),C("design:type",PackageInfoParser)],nt.prototype,"parser",void 0),nt=B([L()],nt)
+}};E([J(),C("design:type",PackageInfoParser)],nt.prototype,"parser",void 0),nt=B([L()],nt)
 ;class CachedModuleService extends nt{constructor(){super(...arguments),this.cache=new Map}resolveModule(t,e){
 if(this.cache.has(t))return this.cache.get(t);const s=this.getModuleByNameDirectory(t,e);if(s){const e={id:s.info.name,
 version:s.info.version,path:s.path,sideEffect:s.info.sideEffects,type:s.info.type};if(s.info.main){
@@ -308,14 +308,14 @@ let t=this.fs.readFile(this.fs.resolvePath(this.path,"NOTICE"));if(!t){const e=n
 }const e=this.fs.newLine;return t.endsWith(e)||(t+=e),t}getConfigFileName(t){
 const e=this.fs.resolvePath(this.path,`tsconfig.${t}.json`),s=this.fs.resolvePath(this.path,"tsconfig.json");let i
 ;return i=this.fs.fileExists(e)?e:this.fs.fileExists(s)?s:"",i}}
-;F([J(),C("design:type",class RepositoryService extends st{findRepository(e){const s=this.fs.resolvePathUp(e,".git")
+;E([J(),C("design:type",class RepositoryService extends st{findRepository(e){const s=this.fs.resolvePathUp(e,".git")
 ;if(s){if(this.fs.directoryExists(s))return new it(s);if(this.fs.fileExists(s)){const e=this.fs.readFile(s)
 ;if(e&&e.startsWith("gitdir:")){const i=e.slice(7).trim(),n=this.fs.resolvePath(t.dirname(s),i);return new it(n)}}}}
 })],rt.prototype,"repositoryService",void 0),
-F([J(),C("design:type",CachedModuleService)],rt.prototype,"cachedModuleService",void 0),
+E([J(),C("design:type",CachedModuleService)],rt.prototype,"cachedModuleService",void 0),
 rt=B([L(),C("design:paramtypes",[String,Object])],rt);class ProjectService extends st{load(t){
 const e=this.packageInfoParser.read(this.fs.resolvePath(t,"package.json"));if(e)return new rt(t,e)}}
-F([J(),C("design:type",PackageInfoParser)],ProjectService.prototype,"packageInfoParser",void 0)
+E([J(),C("design:type",PackageInfoParser)],ProjectService.prototype,"packageInfoParser",void 0)
 ;let ot=class BuildContext extends st{constructor(e){super(),this.options=e,this.cacheDirName=".cache",
 this.binaryDirName="bin",this.libraryDirName="lib",this.artifactDirName="public",this.configDirName="conf",
 this.settingsFileName="settings.js",this.outputPackageJsonFileName="package.json",
@@ -341,16 +341,16 @@ return this.inline}get shouldBeautify(){return this.beautify}get shouldMangle(){
 return this.compress}get cliDir(){return this.env.baseDir}get workingDir(){return this.env.workingDir}get date(){
 const t=this.timestamp
 ;return t.getUTCFullYear()+String(t.getUTCMonth()+1).padStart(2,"0")+String(t.getUTCDate()).padStart(2,"0")}}
-;F([J(),C("design:type",ProjectService)],ot.prototype,"projectService",void 0),
+;E([J(),C("design:type",ProjectService)],ot.prototype,"projectService",void 0),
 ot=B([L(),C("design:paramtypes",[Object])],ot);class JsonParser{read(t){
 const e=this.ts.runtime.readConfigFile(t,this.ts.runtime.sys.readFile)
 ;return e.error&&(console.log(this.ts.formatDiagnostics([e.error])),process.exit(1)),e.config}write(t,e,s){
 s?this.fs.writeFile(t,JSON.stringify(e,null,s)):this.fs.writeFile(t,JSON.stringify(e))}}
-F([J(),C("design:type",TypeScript)],JsonParser.prototype,"ts",void 0),
-F([J(),C("design:type",TypeScriptFileSystem)],JsonParser.prototype,"fs",void 0);class JavaScriptParser{read(t){
+E([J(),C("design:type",TypeScript)],JsonParser.prototype,"ts",void 0),
+E([J(),C("design:type",TypeScriptFileSystem)],JsonParser.prototype,"fs",void 0);class JavaScriptParser{read(t){
 const e=this.ts.runtime.readConfigFile(t,this.ts.runtime.sys.readFile)
 ;return e.error&&(console.log(this.ts.formatDiagnostics([e.error])),process.exit(1)),e.config}write(t,e){
-throw new Error("Not Supported")}}F([J(),C("design:type",TypeScript)],JavaScriptParser.prototype,"ts",void 0)
+throw new Error("Not Supported")}}E([J(),C("design:type",TypeScript)],JavaScriptParser.prototype,"ts",void 0)
 ;class BaseTransformer{constructor(t,e,s){this.buildContext=t,this.program=e,this.transformationContext=s,
 this.tsc=t.ts.runtime,this.types=e.getTypeChecker(),this.factory=s.factory}visitNextNode(t,e){
 return this.tsc.visitEachChild(t,(t=>this.visitor(t,e)),this.transformationContext)}run(t){
@@ -427,22 +427,22 @@ a&&!r.length||(console.log(n.formatDiagnostics(r)),process.exit(1)),this.compile
 ;const u=this.compilerHost=n.runtime.createCompilerHost(a),h=[...new Set(e)]
 ;console.log(Q("create a program with entries"),h.join(", "));const l={rootNames:h,options:a,host:u,
 configFileParsingDiagnostics:r||void 0};return this.program=n.runtime.createProgram(l)}}
-F([J(),C("design:type",ProjectService)],TypeScriptCompiler.prototype,"project",void 0);class TypeScriptParser{read(t){
+E([J(),C("design:type",ProjectService)],TypeScriptCompiler.prototype,"project",void 0);class TypeScriptParser{read(t){
 const e=this.compiler.program,s=this.ts.runtime.sys.readFile(t);if(!e||!s)return{}
 ;const i=this.compiler.getSourceFile(t)||this.compiler.createSourceFile(t,s);return console.log("return emit",i),{OKOK:1
 }}write(t,e){throw new Error("Not Supported")}}
-F([J(),C("design:type",TypeScript)],TypeScriptParser.prototype,"ts",void 0),
-F([J(),C("design:type",TypeScriptCompiler)],TypeScriptParser.prototype,"compiler",void 0);class PropertyFileParser{
+E([J(),C("design:type",TypeScript)],TypeScriptParser.prototype,"ts",void 0),
+E([J(),C("design:type",TypeScriptCompiler)],TypeScriptParser.prototype,"compiler",void 0);class PropertyFileParser{
 read(t){const e=this.fs.readFile(t,"utf-8");if(e)return this.parseText(e)}write(t,e){
 this.fs.writeFile(t,require("js-yaml").dump(e))}parseValue(t){try{return JSON.parse(t)}catch(e){return t}}parseText(t){
 const e=t.match(/[^\r\n]+/g),s={};if(e)for(const t of e){const e=t.trim();if(e.startsWith("#"))continue
 ;const i=e.indexOf("=");if(i>0){const e=t.slice(0,i).trim();let n=t.slice(i+1).trim()
 ;n="true"===n||"false"!==n&&("null"===n?null:this.parseValue(n)),s[e]=n}}return s}}
-F([J(),C("design:type",TypeScriptFileSystem)],PropertyFileParser.prototype,"fs",void 0);class YamlFileParser{read(t){
+E([J(),C("design:type",TypeScriptFileSystem)],PropertyFileParser.prototype,"fs",void 0);class YamlFileParser{read(t){
 const e=this.fs.readFile(t,"utf-8");if(e)return require("js-yaml").load(e)}write(t,e){
 this.fs.writeFile(t,require("js-yaml").dump(e))}}
-F([J(),C("design:type",TypeScriptFileSystem)],YamlFileParser.prototype,"fs",void 0);class SettingsLoader{
-applySettings(t,e,s){if("object"!=typeof e)throw new Error("Invalid settings file: "+t);const i=[]
+E([J(),C("design:type",TypeScriptFileSystem)],YamlFileParser.prototype,"fs",void 0);class SettingsLoader{
+applySettings(t,e,s){if("object"!=typeof e)throw new Error(`Invalid settings file: ${t}`);const i=[]
 ;for(const t of Object.keys(e))"function"!=typeof e[t]&&(s[t]=e[t],i.push(t))
 ;1===i.length?console.log(Q(`Applied a key from '${t}'`)):i.length?console.log(Q(`Applied ${i.length} keys from '${t}'`)):console.log(Q(`No config key in '${t}'`))
 }getFile(e,s,i){const n=t.resolve(e,s+"."+i);if(this.fs.fileExists(n))return n
@@ -457,19 +457,19 @@ applyJSON5FileSettings(t,e,s){const i=this.getFile(t,e,"json5");return!!i&&(this
 !0)}applyFileSettingsInSequence(t,e,s){this.applyJsFileSettings(t,e,s),this.applyJsonFileSettings(t,e,s),
 this.applyYamlFileSettings(t,e,s),this.applyJSON5FileSettings(t,e,s),this.applyIniFileSettings(t,e,s),
 this.applyPropertiesFileSettings(t,e,s)}}
-F([J(),C("design:type",TypeScriptFileSystem)],SettingsLoader.prototype,"fs",void 0),
-F([J(),C("design:type",JavaScriptParser)],SettingsLoader.prototype,"js",void 0),
-F([J(),C("design:type",JsonParser)],SettingsLoader.prototype,"json",void 0),
-F([J(),C("design:type",YamlFileParser)],SettingsLoader.prototype,"yaml",void 0),
-F([J(),C("design:type",IniFileParser)],SettingsLoader.prototype,"ini",void 0),
-F([J(),C("design:type",PropertyFileParser)],SettingsLoader.prototype,"properties",void 0),
-F([J(),C("design:type",TypeScriptParser)],SettingsLoader.prototype,"ts",void 0);class SettingsWriter{write(t,e,s){
+E([J(),C("design:type",TypeScriptFileSystem)],SettingsLoader.prototype,"fs",void 0),
+E([J(),C("design:type",JavaScriptParser)],SettingsLoader.prototype,"js",void 0),
+E([J(),C("design:type",JsonParser)],SettingsLoader.prototype,"json",void 0),
+E([J(),C("design:type",YamlFileParser)],SettingsLoader.prototype,"yaml",void 0),
+E([J(),C("design:type",IniFileParser)],SettingsLoader.prototype,"ini",void 0),
+E([J(),C("design:type",PropertyFileParser)],SettingsLoader.prototype,"properties",void 0),
+E([J(),C("design:type",TypeScriptParser)],SettingsLoader.prototype,"ts",void 0);class SettingsWriter{write(t,e,s){
 let i=[s,"'use strict';","","Object.defineProperty(exports, '__esModule', { value: true });"],n=null
 ;const r=Object.keys(e).sort();for(const t of r){let s="";t[0]!==n&&(n=t[0],s="\n"),
 t.indexOf(".")>=0?s+=`exports["${t}"] = ${JSON.stringify(e[t])};`:s+=`exports.${t} = ${JSON.stringify(e[t])};`,i.push(s)
 }const o=i.join("\n");return this.fs.writeFile(t,o),o}}
-F([J(),C("design:type",ProjectService)],SettingsWriter.prototype,"project",void 0),
-F([J(),C("design:type",TypeScriptFileSystem)],SettingsWriter.prototype,"fs",void 0);class ConfigurationBuilder{
+E([J(),C("design:type",ProjectService)],SettingsWriter.prototype,"project",void 0),
+E([J(),C("design:type",TypeScriptFileSystem)],SettingsWriter.prototype,"fs",void 0);class ConfigurationBuilder{
 async build(t){const e=this.fs.resolvePath(t.inputDir,t.configDirName)
 ;if(!this.fs.directoryExists(e))return void console.log(V("Ignore settings because config dir not exits",e))
 ;const s=this.fs.resolvePath(t.outputDir,t.configDirName),i=this.fs.resolvePath(s,t.settingsFileName)
@@ -483,19 +483,19 @@ n.BUILD_TIME=(new Date).toISOString(),
 n.BUILD_CLI_VERSION=this.cli.version,n.BUILD_NODE_VERSION=process.version.slice(1),n.BUILD_TS_VERSION=this.ts.version,
 n.BUILD_HOST=o.hostname(),console.log(V(`Writing ${Object.keys(n).length} setting keys to`,i)),
 this.settingsWriter.write(i,n,t.project.getHeader())}}
-F([J(),C("design:type",TypeScript)],ConfigurationBuilder.prototype,"ts",void 0),
-F([J(),C("design:type",TypeScriptFileSystem)],ConfigurationBuilder.prototype,"fs",void 0),
-F([J(),C("design:type",SettingsLoader)],ConfigurationBuilder.prototype,"settings",void 0),
-F([J(),C("design:type",SettingsWriter)],ConfigurationBuilder.prototype,"settingsWriter",void 0),
-F([J(),C("design:type",ProjectService)],ConfigurationBuilder.prototype,"project",void 0),
-F([J(),C("design:type",CliService)],ConfigurationBuilder.prototype,"cli",void 0);class ArtifactBuilder{async build(t){
+E([J(),C("design:type",TypeScript)],ConfigurationBuilder.prototype,"ts",void 0),
+E([J(),C("design:type",TypeScriptFileSystem)],ConfigurationBuilder.prototype,"fs",void 0),
+E([J(),C("design:type",SettingsLoader)],ConfigurationBuilder.prototype,"settings",void 0),
+E([J(),C("design:type",SettingsWriter)],ConfigurationBuilder.prototype,"settingsWriter",void 0),
+E([J(),C("design:type",ProjectService)],ConfigurationBuilder.prototype,"project",void 0),
+E([J(),C("design:type",CliService)],ConfigurationBuilder.prototype,"cli",void 0);class ArtifactBuilder{async build(t){
 const{outputDir:e}=t,s=this.fs.resolvePath(t.inputDir,t.artifactDirName)
 ;if(!this.fs.directoryExists(s))return void console.log(V("Ignore artifacts because dir not exits",s))
 ;console.log("Building artifacts")
 ;const i=s.length,n=this.fs.resolvePath(e,t.artifactDirName),r=this.fs.readDirectory(s)
 ;console.log(V(`Start copying ${r.length} from`,s));for(const t of r){const e=t.slice(i),s=this.fs.joinPath(n,e)
 ;this.fs.copy(t,s)}console.log(V(`Complete copy ${r.length} files`))}}
-F([J(),C("design:type",TypeScriptFileSystem)],ArtifactBuilder.prototype,"fs",void 0);class PackageBuilder{
+E([J(),C("design:type",TypeScriptFileSystem)],ArtifactBuilder.prototype,"fs",void 0);class PackageBuilder{
 async build(t){const{outputDir:e,inputDir:s}=t,i=new Set,n=t.defaultPackageFileNames
 ;console.log(V("Start copy project files"));let r=0;for(const t of n)this.fs.fileExists(s,t)&&i.add(t)
 ;const o=t.project.packageInfo.files;if(o&&o.length)for(const t of o)this.fs.fileExists(s,t)&&i.add(t)
@@ -503,7 +503,7 @@ async build(t){const{outputDir:e,inputDir:s}=t,i=new Set,n=t.defaultPackageFileN
 t.files.push(n),r++}console.log(V(`Complete copy ${r} files`))}}function ut(t){if(!t.size)return;const e={}
 ;for(const[s,i]of t.entries())e[s]=i;return e}function ht(e){let s=e,i=t.dirname(s);if("."===i)return i;for(s=i;s;){
 const e=t.dirname(s);if(e===s)return e;if("."===e)return s;s=e}return s}
-F([J(),C("design:type",TypeScriptFileSystem)],PackageBuilder.prototype,"fs",void 0);class PackageFileBuilder{
+E([J(),C("design:type",TypeScriptFileSystem)],PackageBuilder.prototype,"fs",void 0);class PackageFileBuilder{
 async build(e){
 const{outputDir:s}=e,i=this.fs.resolvePath(e.inputDir,e.inputPackageJsonFileName),n=this.fs.resolvePath(e.outputDir,e.outputPackageJsonFileName)
 ;if(this.fs.fileExists(i)){const t=this.json.read(i);t.version=e.project.packageInfo.version,this.json.write(n,t),
@@ -517,7 +517,7 @@ const i=e.project.packageInfo,r=new Map,o=i.sideEffects,c=new Set(i.files||[]),a
 ;const l=this.fs.resolvePath(s,e.artifactDirName);let p,d,f,g
 ;if(this.fs.directoryExists(l)&&this.fs.readDirectory(l).length&&c.add(e.artifactDirName),i.main){
 const e=i.main.slice(0,0-t.extname(i.main).length);p=e+".js",d=e+".mjs",f=e+".d.ts",
-console.log(Q("Found main entry in package.json: "+e))}else{const t=e.defaultEntryPathNames,i=e.defaultEntryName
+console.log(Q(`Found main entry in package.json: ${e}`))}else{const t=e.defaultEntryPathNames,i=e.defaultEntryName
 ;for(const e of t){const t=this.fs.joinPath(e,i+".js"),n=this.fs.joinPath(e,i+".mjs"),r=this.fs.joinPath(e,i+".d.ts")
 ;if(this.fs.fileExists(s,t)&&(p=t),this.fs.fileExists(s,n)&&(d=n),this.fs.fileExists(s,r)&&(f=r),p||d||f){
 console.log(Q(`Found entry from ${e}: lib: ${p}, module: ${d}, type: ${f}`));break}}}p&&c.add(p),d&&c.add(d),f&&c.add(f)
@@ -532,14 +532,14 @@ typings:f,files:this.generateFiles(e,c),dependencies:g,imports:i.imports,exports
 console.log("Generated package.json")}}generateFiles(t,e){const s=new Set;for(const i of e){const e=ht(i)
 ;"."===e?this.fs.exists(t.outputDir,i)&&s.add(i):this.fs.directoryExists(t.outputDir,e)&&s.add(e)}return function(t){
 if(!t.size)return;const e=[];for(const s of t.keys())e.push(s);return e.sort()}(s)}}
-F([J(),C("design:type",TypeScriptFileSystem)],PackageFileBuilder.prototype,"fs",void 0),
-F([J(),C("design:type",JsonParser)],PackageFileBuilder.prototype,"json",void 0),
-F([J(),C("design:type",ProjectService)],PackageFileBuilder.prototype,"project",void 0)
+E([J(),C("design:type",TypeScriptFileSystem)],PackageFileBuilder.prototype,"fs",void 0),
+E([J(),C("design:type",JsonParser)],PackageFileBuilder.prototype,"json",void 0),
+E([J(),C("design:type",ProjectService)],PackageFileBuilder.prototype,"project",void 0)
 ;class TypeScriptLibrary extends st{constructor(){super();let t=this.cms.resolveModule(G,this.env.baseDir)
 ;if(t||(t=this.cms.resolveModule(G,this.env.homeDir)),t||(t=this.cms.resolveModule(G,this.env.workingDir)),
 !t)return console.log(H("tslib is not found, exit program")),void process.exit(1);this.desc=t}get entryModulePath(){
 return this.desc.module}get entryTypingPath(){return this.desc.types}}
-F([J(),C("design:type",CachedModuleService)],TypeScriptLibrary.prototype,"cms",void 0);class RollupPluginScriptBundler{
+E([J(),C("design:type",CachedModuleService)],TypeScriptLibrary.prototype,"cms",void 0);class RollupPluginScriptBundler{
 createPlugin(t){
 const e=this.compiler,s=this.tslib.entryModulePath,i=t.shouldInline?t.project.inlineModuleNames:void 0,n=new Set(t.project.importModuleNames)
 ;return{name:"rollup-plugin-ts-bundler",resolveId(t,r){if(!r)return t;if(t===G)return s?{id:s,moduleSideEffects:!1}:{
@@ -547,8 +547,8 @@ id:G,external:!0};if(i){const e=i.get(t);if(e)return{id:e}}if(n.has(t))return{id
 ;const o=e.resolveModuleName(t,r)
 ;return o?o.packageId?(console.log(V(`Import ${o.packageId.name} as external module from ${r}`)),{id:o.packageId.name,
 external:!0}):{id:o.resolvedFileName}:null},load:t=>e.getCode(t),transform:(t,s)=>t?{code:t,map:e.getSourceMap(s)}:null}
-}}F([J(),C("design:type",TypeScriptCompiler)],RollupPluginScriptBundler.prototype,"compiler",void 0),
-F([J(),C("design:type",TypeScriptLibrary)],RollupPluginScriptBundler.prototype,"tslib",void 0)
+}}E([J(),C("design:type",TypeScriptCompiler)],RollupPluginScriptBundler.prototype,"compiler",void 0),
+E([J(),C("design:type",TypeScriptLibrary)],RollupPluginScriptBundler.prototype,"tslib",void 0)
 ;class UnsupportedSyntaxError extends Error{constructor(t,e){super(e)}}class NamespaceFixer{constructor(t,e){
 this.sourceFile=t,this.tsc=e}findNamespaces(){const t=[],e={};for(const s of this.sourceFile.statements){const i={
 start:s.getStart(),end:s.getEnd()};if(this.tsc.isEmptyStatement(s)){t.unshift({name:"",exports:[],location:i});continue}
@@ -577,7 +577,7 @@ const{type:r,generics:o}=s[n]||{};if("interface"===r||"type"===r){const s=lt(o)
 }else t+=`declare const ${i.name}_${e}: typeof ${n};\n`}if(i.name){t+=`declare namespace ${i.name} {\n`,
 t+="  export {\n"
 ;for(const{exportedName:e,localName:s}of i.exports)t+=e===s?`    ${i.name}_${e} as ${e},\n`:`    ${s} as ${e},\n`
-;t+="  };\n",t+="}"}t+=e}return t}}function lt(t){return t?`<${Array.from({length:t},((t,e)=>"_"+e)).join(", ")}>`:""}
+;t+="  };\n",t+="}"}t+=e}return t}}function lt(t){return t?`<${Array.from({length:t},((t,e)=>`_${e}`)).join(", ")}>`:""}
 function pt(t,e,s){var i;let n=!1
 ;const r=s.isClassDeclaration(e)||s.isFunctionDeclaration(e)||s.isModuleDeclaration(e)||s.isVariableStatement(e)
 ;for(const r of null!==(i=e.modifiers)&&void 0!==i?i:[])switch(r.kind){case s.SyntaxKind.ExportKeyword:
@@ -671,9 +671,9 @@ this.tsc=e.tsc,this.ast=yt({type:"Program",sourceType:"module",body:[]},{start:(
 this.ast.body.push(t)}createDeclaration(t,e){const s={start:t.getFullStart(),end:t.getEnd()};if(!e){
 const t=new DeclarationScope({range:s,helper:this.helper});return this.pushStatement(t.iife),t}
 const i=e.getText(this.sourceFile),n=new DeclarationScope({id:e,range:s,helper:this.helper}),r=this.declarations.get(i)
-;if(r){r.pushIdentifierReference(e),r.declaration.end=s.end
-;for(let t=this.ast.body.findIndex((t=>t==r.declaration))+1;t<this.ast.body.length;t++){const e=this.ast.body[t]
-;e.start=e.end=s.end}}else this.pushStatement(n.declaration),this.declarations.set(i,n);return r||n}convertStatement(t){
+;if(r){r.pushIdentifierReference(e),r.declaration.end=s.end;let t=this.ast.body.findIndex((t=>t==r.declaration))
+;for(let e=t+1;e<this.ast.body.length;e++){const t=this.ast.body[e];t.start=t.end=s.end}
+}else this.pushStatement(n.declaration),this.declarations.set(i,n);return r||n}convertStatement(t){
 if(this.tsc.isEnumDeclaration(t))return this.convertEnumDeclaration(t)
 ;if(this.tsc.isFunctionDeclaration(t))return this.convertFunctionDeclaration(t)
 ;if(this.tsc.isInterfaceDeclaration(t)||this.tsc.isClassDeclaration(t))return this.convertClassOrInterfaceDeclaration(t)
@@ -746,7 +746,7 @@ i.appendLeft(l,";\n");const e=t.getFullStart(),s=i.slice(e,t.getStart());let n=s
 for(const n of t.statements)if(l(n),e.matchesModifier(n,s.ModifierFlags.ExportDefault)&&(s.isFunctionDeclaration(n)||s.isClassDeclaration(n))){
 if(n.name)continue;o||(o=p("export_default"))
 ;const t=n.getChildren(),e=t.findIndex((t=>t.kind===s.SyntaxKind.ClassKeyword||t.kind===s.SyntaxKind.FunctionKeyword)),r=t[e],c=t[e+1]
-;c.kind>=s.SyntaxKind.FirstPunctuation&&c.kind<=s.SyntaxKind.LastPunctuation?i.appendLeft(c.getStart(),o):i.appendRight(r.getEnd()," "+o)
+;c.kind>=s.SyntaxKind.FirstPunctuation&&c.kind<=s.SyntaxKind.LastPunctuation?i.appendLeft(c.getStart(),o):i.appendRight(r.getEnd(),` ${o}`)
 }for(const t of a.values()){const e=t.pop()[0];for(const s of t)i.move(s[0],s[1],e)}
 o&&i.append(`\nexport default ${o};\n`),r.size&&i.append(`\nexport { ${[...r].join(", ")} };\n`)
 ;for(const[t,e]of c.entries())i.prepend(`import * as ${e} from "${t}";\n`);const u=new Set,h=t.getLineStarts()
@@ -757,7 +757,7 @@ if(!s.isLiteralTypeNode(t.argument)||!s.isStringLiteral(t.argument.literal))thro
 ;const e=t.argument.literal.text,n=t.getChildren(),r=n.find((t=>t.kind===s.SyntaxKind.ImportKeyword)).getStart()
 ;let o=t.getEnd();const a=n.find((t=>t.kind===s.SyntaxKind.DotToken||t.kind===s.SyntaxKind.LessThanToken))
 ;a&&(o=a.getStart());const u=function(t){let e=c.get(t);return e||(e=p(t.replace(/[^a-zA-Z0-9_$]/g,(()=>"_"))),
-c.set(t,e)),e}(e);i.overwrite(r,o,u)}}function p(t){let e=t;for(;n.has(e);)e="_"+e;return n.add(e),e}function d(t,e){
+c.set(t,e)),e}(e);i.overwrite(r,o,u)}}function p(t){let e=t;for(;n.has(e);)e=`_${e}`;return n.add(e),e}function d(t,e){
 let s=a.get(t);if(s){const t=s[s.length-1];t[1]===e[0]?t[1]=e[1]:s.push(e)}else s=[e],a.set(t,s)}}({sourceFile:i,
 helper:n});r.set(i.fileName,o.typeReferences)
 ;const c=o.code.toString(),a=s.createSourceFile(e,c),u=new Transformer(a,n).transform()
@@ -767,11 +767,11 @@ const n=s.createSourceFile(i.fileName,t),o=new NamespaceFixer(n,e),c=new Set
 ;for(const t of Object.keys(i.modules))for(const e of r.get(t.split("\\").join("/"))||[])c.add(e)
 ;return t=(a=Array.from(c,(t=>`/// <reference types="${t}" />`))).length?a.join("\n")+"\n":"",{code:t+=o.fix(),map:{
 mappings:""}};var a}}}}
-F([J(),C("design:type",TypeScriptFileSystem)],RollupPluginDefinitionBundler.prototype,"fs",void 0),
-F([J(),C("design:type",TypeScriptCompiler)],RollupPluginDefinitionBundler.prototype,"compiler",void 0),
-F([J(),C("design:type",ProjectService)],RollupPluginDefinitionBundler.prototype,"project",void 0),
-F([J(),C("design:type",CachedModuleService)],RollupPluginDefinitionBundler.prototype,"module",void 0),
-F([J(),C("design:type",TypeScriptLibrary)],RollupPluginDefinitionBundler.prototype,"tslib",void 0)
+E([J(),C("design:type",TypeScriptFileSystem)],RollupPluginDefinitionBundler.prototype,"fs",void 0),
+E([J(),C("design:type",TypeScriptCompiler)],RollupPluginDefinitionBundler.prototype,"compiler",void 0),
+E([J(),C("design:type",ProjectService)],RollupPluginDefinitionBundler.prototype,"project",void 0),
+E([J(),C("design:type",CachedModuleService)],RollupPluginDefinitionBundler.prototype,"module",void 0),
+E([J(),C("design:type",TypeScriptLibrary)],RollupPluginDefinitionBundler.prototype,"tslib",void 0)
 ;class RollupService extends st{bundleScripts(t,e,s){const i=[];i.push(this.scriptBundler.createPlugin(t)),
 (t.shouldMangle||t.shouldCompress)&&i.push(this.terser.createPlugin(t,s)),
 t.shouldBeautify&&i.push(this.prettier.createPlugin(t));const n={input:e,external:t.project.importModuleNames||[],
@@ -784,14 +784,14 @@ entryFileNames:"[name].d.ts",chunkFileNames:this.fs.joinPath(t.libraryDirName,"[
 ;return c.rollup(i).then((t=>t.write(n).then((()=>{}))))}findAndFixBinaryFiles(t,e){
 for(const[e]of t.project.findBinFiles(t.binaryDirName)){const s=this.fs.resolvePath(t.outputDir,e+".js")
 ;this.fs.fileExists(s)&&(this.fs.prependLine(s,"#!/usr/bin/env node"),this.fs.chmod(s,"755"))}}}
-F([J(),C("design:type",ProjectService)],RollupService.prototype,"project",void 0),
-F([J(),C("design:type",TypeScriptCompiler)],RollupService.prototype,"compiler",void 0),
-F([J(),C("design:type",RollupPluginScriptBundler)],RollupService.prototype,"scriptBundler",void 0),
-F([J(),C("design:type",RollupPluginDefinitionBundler)],RollupService.prototype,"definitionBundler",void 0),
-F([J(),C("design:type",class RollupPluginPrettier{createPlugin(t){const e=t.project.packageInfo.prettier
+E([J(),C("design:type",ProjectService)],RollupService.prototype,"project",void 0),
+E([J(),C("design:type",TypeScriptCompiler)],RollupService.prototype,"compiler",void 0),
+E([J(),C("design:type",RollupPluginScriptBundler)],RollupService.prototype,"scriptBundler",void 0),
+E([J(),C("design:type",RollupPluginDefinitionBundler)],RollupService.prototype,"definitionBundler",void 0),
+E([J(),C("design:type",class RollupPluginPrettier{createPlugin(t){const e=t.project.packageInfo.prettier
 ;let s=t.defaultPrettierConfig;return e&&(s=Object.assign(s,e)),{name:"rollup-plugin-prettier",
 renderChunk:t=>h.format(t,s)}}
-})],RollupService.prototype,"prettier",void 0),F([J(),C("design:type",class RollupPluginTerser{createPlugin(t,e=!1){
+})],RollupService.prototype,"prettier",void 0),E([J(),C("design:type",class RollupPluginTerser{createPlugin(t,e=!1){
 let s;switch(t.target){case"es2015":s=2015;break;case"es2016":s=2016;break;case"es2017":s=2017;break;case"es2018":s=2018
 ;break;case"es2019":s=2019;break;case"es2020":case"esnext":s=2020;break;default:
 console.log(H("Build target only support ES2015 or later (e.g. 2015,2016,2017,2018,2019,2020)")),process.exit(1)}
@@ -808,21 +808,21 @@ console.log("Start bundle scripts..."),Object.keys(e).length?(console.time("Bund
 await this.rollup.bundleScripts(t,e,!1),console.timeEnd("Bundle scripts")):console.log("skip build scripts"),
 console.log("Start bundle types..."),Object.keys(i).length?(console.time("Bundle types"),
 await this.rollup.bundleTypes(t,i),console.timeEnd("Bundle types")):console.log("skip build types")}}
-F([J(),C("design:type",TypeScriptFileSystem)],BundleBuilder.prototype,"fs",void 0),
-F([J(),C("design:type",TypeScriptCompiler)],BundleBuilder.prototype,"compiler",void 0),
-F([J(),C("design:type",JsonParser)],BundleBuilder.prototype,"json",void 0),
-F([J(),C("design:type",RollupService)],BundleBuilder.prototype,"rollup",void 0);class OptimizorBuilder{async build(e){
+E([J(),C("design:type",TypeScriptFileSystem)],BundleBuilder.prototype,"fs",void 0),
+E([J(),C("design:type",TypeScriptCompiler)],BundleBuilder.prototype,"compiler",void 0),
+E([J(),C("design:type",JsonParser)],BundleBuilder.prototype,"json",void 0),
+E([J(),C("design:type",RollupService)],BundleBuilder.prototype,"rollup",void 0);class OptimizorBuilder{async build(e){
 const s=this.fs.resolvePath(e.outputDir,e.artifactDirName),i=this.find(s)
 ;for(const e of i)t.basename(e).startsWith(".")||(this.image.canCompress(e)?(console.log("Compressing image",e),
 await this.image.compress(e)):this.fs.canCompress(e)&&(console.log("Compressing file",e),await this.fs.compressGzip(e),
 await this.fs.compressBrotli(e)))}find(t,e){return this.fs.readDirectory(t,e,void 0,void 0,1)}}
-F([J(),C("design:type",class ImageService{canCompress(t){
+E([J(),C("design:type",class ImageService{canCompress(t){
 return t.endsWith(".jpg")||t.endsWith(".jpeg")||t.endsWith(".png")}compress(t){let e
 ;if(t.endsWith(".jpg")||t.endsWith(".png"))e=t.slice(0,-4)+".webp";else{if(!t.endsWith(".jpeg"))return Promise.resolve()
-;e=t.slice(0,-5)+".webp"}return g.default(t).webp({lossless:!0,force:!0,reductionEffort:6}).toFile(e)}
+;e=t.slice(0,-5)+".webp"}return g.default(t).webp({lossless:!0,force:!0,effort:6}).toFile(e)}
 })],OptimizorBuilder.prototype,"image",void 0),
-F([J(),C("design:type",TypeScriptFileSystem)],OptimizorBuilder.prototype,"fs",void 0),
-F([J(),C("design:type",TypeScript)],OptimizorBuilder.prototype,"ts",void 0);class NodeProjectBuilder{async build(t){
+E([J(),C("design:type",TypeScriptFileSystem)],OptimizorBuilder.prototype,"fs",void 0),
+E([J(),C("design:type",TypeScript)],OptimizorBuilder.prototype,"ts",void 0);class NodeProjectBuilder{async build(t){
 return await this.compiler.build(t),await this.configurationBuilder.build(t),await this.artifactBuilder.build(t),
 await this.packageBuilder.build(t),await this.bundleBuilder.build(t),await this.packageFileBuilder.build(t),
 t.shouldCompress&&await this.optimizor.build(t),t}}function wt(){
@@ -834,21 +834,21 @@ console.log(H("██╔══╝   ██╔══██╗ ██╔══█�
 console.log(H("███████╗ ██║  ██║ ██║  ██║ ╚██████╔╝ ██║  ██║")),
 console.log(H("╚══════╝ ╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝  ╚═╝  ╚═╝")),console.log())}function bt(t,e=new Date){
 const s=(e.getTime()-t.getTime())/1e3
-;return s<5?"just now":s<60?Math.floor(s)+" seconds ago":s<3600?Math.floor(s/60)+" minutes ago":(s/3600).toFixed(2)+" hours ago"
-}F([J(),C("design:type",ConfigurationBuilder)],NodeProjectBuilder.prototype,"configurationBuilder",void 0),
-F([J(),C("design:type",ArtifactBuilder)],NodeProjectBuilder.prototype,"artifactBuilder",void 0),
-F([J(),C("design:type",PackageBuilder)],NodeProjectBuilder.prototype,"packageBuilder",void 0),
-F([J(),C("design:type",PackageFileBuilder)],NodeProjectBuilder.prototype,"packageFileBuilder",void 0),
-F([J(),C("design:type",BundleBuilder)],NodeProjectBuilder.prototype,"bundleBuilder",void 0),
-F([J(),C("design:type",TypeScriptCompiler)],NodeProjectBuilder.prototype,"compiler",void 0),
-F([J(),C("design:type",OptimizorBuilder)],NodeProjectBuilder.prototype,"optimizor",void 0)
+;return s<5?"just now":s<60?`${Math.floor(s)} seconds ago`:s<3600?`${Math.floor(s/60)} minutes ago`:`${(s/3600).toFixed(2)} hours ago`
+}E([J(),C("design:type",ConfigurationBuilder)],NodeProjectBuilder.prototype,"configurationBuilder",void 0),
+E([J(),C("design:type",ArtifactBuilder)],NodeProjectBuilder.prototype,"artifactBuilder",void 0),
+E([J(),C("design:type",PackageBuilder)],NodeProjectBuilder.prototype,"packageBuilder",void 0),
+E([J(),C("design:type",PackageFileBuilder)],NodeProjectBuilder.prototype,"packageFileBuilder",void 0),
+E([J(),C("design:type",BundleBuilder)],NodeProjectBuilder.prototype,"bundleBuilder",void 0),
+E([J(),C("design:type",TypeScriptCompiler)],NodeProjectBuilder.prototype,"compiler",void 0),
+E([J(),C("design:type",OptimizorBuilder)],NodeProjectBuilder.prototype,"optimizor",void 0)
 ;class BuildService extends st{async info(t){const e=[];!function(t){
 r.lt(process.version,"12.0.0")?console.log(Q("TSB@"+t)):(console.log(),console.log(Q("████████╗ ███████╗ ██████╗ ")),
 console.log(Q("╚══██╔══╝ ██╔════╝ ██╔══██╗")),console.log(Q("   ██║    ███████╗ ██████╔╝")),
 console.log(Q("   ██║    ╚════██║ ██╔══██╗")),console.log(Q("   ██║    ███████║ ██████╔╝")),
 console.log(Q("   ╚═╝    ╚══════╝ ╚═════╝ "),Q("@"+t)),console.log())}(this.cli.version)
 ;const s=r.coerce(process.version).version;e.push(["Time",t.timestamp.toISOString()]);const i=t.project,n=i.packageInfo
-;e.push(["Package",n.name]);let o=n.version;t.version!==n.version&&(o=o+" → "+Q(t.version)),e.push(["Version",o])
+;e.push(["Package",n.name]);let o=n.version;t.version!==n.version&&(o+=` → ${Q(t.version)}`),e.push(["Version",o])
 ;const c=this.ts.version;let a="",u=""
 ;n.dependencies&&n.dependencies.typescript?u=n.dependencies.typescript:n.devDependencies&&n.devDependencies.typescript?u=n.devDependencies.typescript:n.engines&&n.engines.typescript&&(u=n.engines.typescript),
 u&&(a=`${c} (require ${u})`,r.satisfies(c,u)||(a=V(a))),e.push(["TypeScript Version",a||c]);let h=""
@@ -865,8 +865,8 @@ t.inputDir==t.outputDir)throw new Error("Output dir can not be the same with inp
 ;for(const[t,s]of e)console.log((t.toUpperCase()+" ").padEnd(g+3,"౼"),s)}async printOutputFile(t){
 console.log("Generated files....");const e=t.outputDir.length+1,s=this.fs.readDirectory(t.outputDir);for(const t of s){
 const s=t.slice(e);console.log("+",s)}}async build(t){return await this.info(t),await this.projectBuilder.build(t),
-await this.printOutputFile(t),t}}F([J(),C("design:type",ProjectService)],BuildService.prototype,"project",void 0),
-F([J(),C("design:type",NodeProjectBuilder)],BuildService.prototype,"projectBuilder",void 0)
+await this.printOutputFile(t),t}}E([J(),C("design:type",ProjectService)],BuildService.prototype,"project",void 0),
+E([J(),C("design:type",NodeProjectBuilder)],BuildService.prototype,"projectBuilder",void 0)
 ;let Pt=class TypeScriptBundler{async main(){const t=this.cli,e=require("commander")
 ;e.version(t.version,"-v, --version","Print version information and quit").usage("[options] COMMAND").description("A typescript bundler"),
 e.command("info").description("Return information of current project").option("--prod","Sets the build configuration as mangle:1, beautify:1, compress:1, inline:1, configuration:production, target:es2018").option("--rc [rel]",'Same as --prod but add suffix "rc" to release version').option("--dev [rel]",'Same as --prod but add suffix "dev.YYYYMMDD" to release version').option("--insiders [rel]",'Same as --prod but add suffix "insiders.YYYYMMDD" to release version').option("-m, --mangle","Mangle output. default is no").option("-b, --beautify","Beautify output. default is no").option("-c, --compress","Compress output. default is no").option("-i, --inline","Inline devDependencies if requires. default is no").option("--configuration <name>","Sets the build configuration to the giving target. default is development").option("--target <target>","Sets ECMAScript version to build, e.g. es2015, es2016, es2017, es2018, es2019, es2020, es2021. default is es2018").option("--release <rel>","Add suffix -[rel].YYYYMMDD to package version. default no suffix").option("--decorator","Generate decorator. Overwrites settings in tsconfig.json").option("--no-decorator","Do not generate decorator. Overwrites settings in tsconfig.json").option("--metadata","Generate metadata. Overwrites settings in tsconfig.json").option("--no-metadata","Do not generate metadata. Overwrites settings in tsconfig.json").option("--in <input>","Sets the input folder. default is current directory").option("--out <output>","Sets the output folder. default is release").action((async t=>this.build.info(new ot(t)))),
@@ -883,10 +883,10 @@ e.commands.forEach((t=>t.on("--help",(()=>console.log()))));const s=(t,s)=>{e.Co
 "unknownOption"===t&&this.i||(this.outputHelp(),console.log("  "+H(s(...e))),console.log(),process.exit(1))}}
 ;s("missingArgument",(t=>`Missing required argument ${V(`<${t}>`)}.`)),
 s("unknownOption",(t=>`Unknown option ${V(t)}.`)),
-s("optionMissingArgument",((t,e)=>"Missing required argument for option "+V(t.flags)+(e?", got "+V(e):"")));try{
+s("optionMissingArgument",((t,e)=>`Missing required argument for option ${V(t.flags)}`+(e?`, got ${V(e)}`:"")));try{
 e.parseAsync().catch((function(t){wt(),console.log(H("Build was interrupted")),console.log(H(t.stack||t.message))}))
 }catch(t){wt(),console.log(H("Program error")),console.log(H(t.stack||t.message))}}}
-;F([J(),C("design:type",Environment)],Pt.prototype,"env",void 0),
-F([J(),C("design:type",TypeScript)],Pt.prototype,"ts",void 0),
-F([J(),C("design:type",CliService)],Pt.prototype,"cli",void 0),
-F([J(),C("design:type",BuildService)],Pt.prototype,"build",void 0),Pt=B([L()],Pt),(new Pt).main();
+;E([J(),C("design:type",Environment)],Pt.prototype,"env",void 0),
+E([J(),C("design:type",TypeScript)],Pt.prototype,"ts",void 0),
+E([J(),C("design:type",CliService)],Pt.prototype,"cli",void 0),
+E([J(),C("design:type",BuildService)],Pt.prototype,"build",void 0),Pt=B([L()],Pt),(new Pt).main();
