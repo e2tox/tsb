@@ -3,9 +3,9 @@
              COPYRIGHT 2014-2024 Ling Zhang, ALL RIGHTS RESERVED
 ***************************************************************************** */
 "use strict"
-;const t=require("path"),e=require("typescript"),s=require("chalk"),i=require("fs"),n=require("zlib"),r=require("semver"),o=require("os"),c=require("rollup"),a=require("magic-string"),u=require("rollup-plugin-terser"),l=require("prettier"),h=require("sharp")
-;function p(t){return t&&"object"==typeof t&&"default"in t?t:{default:t}}const d=p(s),f=p(a),g=p(h);
-/*! Copyright 2016-2021 Ling Zhang
+;const t=require("path"),e=require("typescript"),s=require("chalk"),i=require("fs"),n=require("zlib"),r=require("semver"),o=require("os"),c=require("rollup"),a=require("magic-string"),u=require("rollup-plugin-terser"),h=require("prettier"),l=require("sharp")
+;function p(t){return t&&"object"==typeof t&&"default"in t?t:{default:t}}const d=p(s),f=p(a),g=p(l);
+/*! Copyright 2016-2024 Ling Zhang
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -28,31 +28,33 @@ super(),this.target=t,e&&(this.descriptor=e)}}function y(t,e,s){const i=t.proper
 class Parameter extends Annotation{}function v(t,e){const s=t.parameters||(t.parameters=new Map);let i=s.get(e)
 ;return i||s.set(e,i=new Parameter),i}function S(t,e){(t.a||(t.a=[])).push(e)}function w(t){t.v++}function b(t,e,s){
 return Reflect.defineProperty(t,e,{value:s}),s}function P(t,e,s){(t.m||(t.m=new Map)).set(e,s)}
-class Type extends Property{constructor(t,e){super(t),this.target=t,this.prototype=e}}
-function x({target:t,prototype:e}){const s="constructor",i=Reflect.getOwnPropertyDescriptor(e,s);let n
+"function"==typeof SuppressedError&&SuppressedError;class Type extends Property{constructor(t,e){super(t),this.target=t,
+this.prototype=e}}function x({target:t,prototype:e}){const s="constructor",i=Reflect.getOwnPropertyDescriptor(e,s);let n
 ;return i?n=i.value:e[s]=n=new Property(t),n}class Knowledge$1 extends WeakMap{get id(){return"agentframework"}
-get version(){return"2.0.1"}get timestamp(){return"2021-11-02T00:00:00.001Z"}constructor(t,e){super()
+get version(){return"2.0.0"}get timestamp(){return"2016-11-03T00:00:00.000Z"}constructor(t,e){super()
 ;const s=t,i=s[e]&&s[e].bind(s),n=this;let r;r=i?function(t,e){return function(s,r,o){let c
 ;return c=r?y(n.add(s),r,o):x(n.add(s.prototype)),P(c,t,e),i(t,e)(s,r,o)}}:function(t,e){return function(s,i,r){let o
 ;o=i?y(n.add(s),i,r):x(n.add(s.prototype)),P(o,t,e)}},r.now=Date.now(),b(s,e,r),n.set(n,new Map)}add(t){
 const e=super.get(t);if(e)return e;if(t===Function.prototype){const e=new Type(t,Object.create(null))
 ;return this.set(t,e),e}const s=Reflect.getPrototypeOf(t),i=new Type(t,Object.create(s&&this.add(s).prototype))
 ;return this.set(t,i),i}}let D=class Knowledge{static has(t){}static get(t){}static set(t,e){}static add(t){}};var I
-;function j(t,e,s,i){const n=D.add(e),r=y(n,s,i);S(r,t),w(r),w(n)}function O(t,e,s,i){const n=D.add(e),r=y(n,s),o=v(r,i)
-;S(o,t),w(o),w(r),w(n)}function k(t,e){const s=x(D.add(e));S(s,t),w(s)}function M(t,e,s){const i=x(D.add(e)),n=v(i,s)
+;function j(t,e,s,i){const n=D.add(e),r=y(n,s,i);S(r,t),w(r),w(n)}function M(t,e,s,i){const n=D.add(e),r=y(n,s),o=v(r,i)
+;S(o,t),w(o),w(r),w(n)}function k(t,e){const s=x(D.add(e));S(s,t),w(s)}function O(t,e,s){const i=x(D.add(e)),n=v(i,s)
 ;S(n,t),w(n),w(i)}function T(t){return D.get(t)}function E(t){const e=D.get(t);if(!e)return
 ;const s=Reflect.getOwnPropertyDescriptor(e.prototype,"constructor");return s?s.value:void 0}function F(t,e,s,i){
 null===i&&(i=Reflect.getOwnPropertyDescriptor(e,s));let n=i;for(let r=t.length-1;r>=0;r--)n=t[r](e,s,n||i)
 ;n&&Reflect.defineProperty(e,s,n)}function B(t,e){for(let s=t.length-1;s>=0;s--)e=t[s](e)||e;return e}function C(t,e){
-return function(s,i,n){let r;r=i?y(D.add(s),i,n):x(D.add(s.prototype)),P(r,t,e)}}D=B([(I=Reflect,function(){let t
-;return t=Symbol.for("metadata"),I[t]||b(I,t,I.construct(Knowledge$1,[I,"metadata"]))})],D)
-;class AgentFrameworkError extends Error{}function R(t){return(e,s,i)=>{
-m(t,e,s,i)&&("number"==typeof i?null!=s?O(t,e,s,i):M(t,e.prototype,i):j(t,e,s,i))}}function A(t,e,s){
-return Reflect.defineProperty(t,e,s),t}function $(t,e,s){return void 0!==s&&A(t,e,{value:s}),s}function N(t,e,s,i){
-const n=D.get(D),r=t+"."+String(s);let o=n.get(r);return void 0===o&&(o=i(),n.set(r,o)),A(e,s,{value:o}),o}
+return function(s,i,n){let r;r=i?y(D.add(s),i,n):x(D.add(s.prototype)),P(r,t,e)}}D=function(t,e,s,i){
+var n,r=arguments.length,o=r<3?e:null===i?i=Object.getOwnPropertyDescriptor(e,s):i
+;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)o=Reflect.decorate(t,e,s,i);else for(var c=t.length-1;c>=0;c--)(n=t[c])&&(o=(r<3?n(o):r>3?n(e,s,o):n(e,s))||o)
+;return r>3&&o&&Object.defineProperty(e,s,o),o}([(I=Reflect,function(){let t;return t=Symbol.for("metadata"),
+I[t]||b(I,t,I.construct(Knowledge$1,[I,"metadata"]))})],D);class AgentFrameworkError extends Error{}function A(t){
+return(e,s,i)=>{m(t,e,s,i)&&("number"==typeof i?null!=s?M(t,e,s,i):O(t,e.prototype,i):j(t,e,s,i))}}function R(t,e,s){
+return Reflect.defineProperty(t,e,s),t}function $(t,e,s){return void 0!==s&&R(t,e,{value:s}),s}function N(t,e,s,i){
+const n=D.get(D),r=t+"."+String(s);let o=n.get(r);return void 0===o&&(o=i(),n.set(r,o)),R(e,s,{value:o}),o}
 class CustomInterceptors{static get v1(){return N("CustomInterceptors",this,"v1",(()=>new WeakMap))}}function _(t){
 return!!Reflect.has(t,"interceptor")||CustomInterceptors.v1.has(t.constructor)}function q(t,e,s){
-let i=Reflect.get(t,"version"),n=s();return A(t,e,{get(){const e=Reflect.get(t,"version");return i!==e&&(n=s(),i=e),n}
+let i=Reflect.get(t,"version"),n=s();return R(t,e,{get(){const e=Reflect.get(t,"version");return i!==e&&(n=s(),i=e),n}
 }),n}class OnDemandMemberInfo{constructor(t){this.target=t}get name(){return $(this,"name",this.getName())}
 getDeclaringType(){return"object"==typeof this.target?this.target.constructor:this.target}get declaringType(){
 return $(this,"declaringType",this.getDeclaringType())}get kind(){return $(this,"kind",this.getKind())}get annotation(){
@@ -65,7 +67,7 @@ const e=this.ownAttributes;if(e)for(const s of e)if(s instanceof t)return s}getO
 const e=this.ownAttributes;return e?t?e.filter((e=>e instanceof t)):e.slice(0):[]}findOwnAttributes(t,e){
 const s=this.ownAttributes;return s?s.filter((s=>t(s,e))):[]}hasOwnInterceptor(){return void 0!==this.ownInterceptors}}
 class OnDemandParameterInfo extends OnDemandMemberInfo{constructor(t,e,s,i){super(t),this.key=e,this.index=s,
-this.parent=i}addAttribute(t){"constructor"===this.key?M(t,this.target,this.index):O(t,this.target,this.key,this.index)}
+this.parent=i}addAttribute(t){"constructor"===this.key?O(t,this.target,this.index):M(t,this.target,this.key,this.index)}
 getAnnotation(){const t=this.parent.annotation;return t&&t.parameters&&t.parameters.get(this.index)}getName(){
 return this.index.toString()}getKind(){let t=MemberKinds.Parameter
 ;return this.target===this.declaringType&&(t|=MemberKinds.Static),"constructor"===this.key&&(t|=MemberKinds.Class),t}
@@ -122,7 +124,7 @@ const s=this.interceptor||(this.interceptor=function(t){const e=CustomIntercepto
 ;if(e)return Reflect.construct(e[0],[t,e[1]]);const s=Reflect.get(t,"interceptor")
 ;return s&&"object"==typeof s&&"function"==typeof s.intercept?s:void 0}(this.attribute))
 ;if(s)return s.intercept(this.next,t,e)
-;const i=this.next.invoke(t,e),n=Reflect.getOwnPropertyDescriptor(this.next,"invoke");return A(this,"invoke",{
+;const i=this.next.invoke(t,e),n=Reflect.getOwnPropertyDescriptor(this.next,"invoke");return R(this,"invoke",{
 value:n?n.value:this.next.invoke.bind(this.next)}),i}}class OnDemandInterceptorFactory{static addInterceptors(t,e){
 if(e)for(const s of e)t=new OnDemandInterceptorInvocation(t,s);return t}static addInterceptor(t,e){
 return new OnDemandInterceptorInvocation(t,e)}}class MethodParameterInvocation{constructor(t){this.design=t}invoke(t,e){
@@ -132,14 +134,12 @@ const s=e.index,i=e.ownInterceptors;if(i){const n=new MethodParameterInvocation(
 ;t.set(s,OnDemandInterceptorFactory.addInterceptors(n,i))}}return $(this,"invocations",t.size?t:void 0)}
 intercept(t,e,s){const i=Array.prototype.slice.call(e,0);for(const[t,n]of this.invocations.entries())i[t]=n.invoke(e,s)
 ;return t.invoke(i,s)}}class GetterSetterInvocation{constructor(t,e){this.design=t,this.cache=e}invoke(t,e){
-const s=this.design.key;if(null==e)throw new AgentFrameworkError("InvalidReceiver")
-;if(t.length)return this.cache.set(e,t[0]),t[0];{if(this.cache.has(e))return this.cache.get(e)
-;const t=this.design.declaringType.prototype;return Reflect.has(t,s)?Reflect.get(t,s):void 0}}}class MethodInvocation{
-constructor(t,e){this.target=t,this.design=e}invoke(t,e){return Reflect.apply(this.target,e,t)}}
-class AgentTypeInvocation{constructor(t,e){this.target=t,this.design=e}invoke([t],e){
-const s=A(class extends e{},"name",{value:t+"$"});return K(s,this.target),s}}class OnDemandInvocationFactory{
-static createAgentInvocation(t,e,s){let i=new AgentTypeInvocation(t,e);i=OnDemandInterceptorFactory.addInterceptor(i,s)
-;const n=e.property("constructor")
+if(null==e)throw new AgentFrameworkError("InvalidReceiver");return t.length?(this.cache.set(e,t[0]),
+t[0]):this.cache.get(e)}}class MethodInvocation{constructor(t,e){this.target=t,this.design=e}invoke(t,e){
+return Reflect.apply(this.target,e,t)}}class AgentTypeInvocation{constructor(t,e){this.target=t,this.design=e}
+invoke([t],e){const s=R(class extends e{},"name",{value:t+"$"});return K(s,this.target),s}}
+class OnDemandInvocationFactory{static createAgentInvocation(t,e,s){let i=new AgentTypeInvocation(t,e)
+;i=OnDemandInterceptorFactory.addInterceptor(i,s);const n=e.property("constructor")
 ;return n.version&&(i=OnDemandInterceptorFactory.addInterceptors(i,n.ownInterceptors)),i}
 static createConstructorInvocation(t,e,s){let i=new ClassTypeInvocation(t,e)
 ;return s.hasParameter()&&(i=OnDemandInterceptorFactory.addInterceptor(i,new OnDemandParameterInterceptor(s))),
@@ -151,21 +151,21 @@ let s=new MethodInvocation(t,e)
 OnDemandInterceptorFactory.addInterceptors(s,e.ownInterceptors)}}class OnDemandAgentCompiler{static makeField(t,e){
 const s=new WeakMap,i={configurable:!0,get:function(){const n=OnDemandInvocationFactory.createFieldInvocation(t,s)
 ;return i.get=function(){return n.invoke([],this)},i.set=function(){return n.invoke(arguments,this)},
-A(e,n.design.key,i),n.invoke([],this)},set:function(){const n=OnDemandInvocationFactory.createFieldInvocation(t,s)
+R(e,n.design.key,i),n.invoke([],this)},set:function(){const n=OnDemandInvocationFactory.createFieldInvocation(t,s)
 ;return i.get=function(){return n.invoke([],this)},i.set=function(){return n.invoke(arguments,this)},
-A(e,n.design.key,i),n.invoke(arguments,this)}};return i}static makeProperty(t,e,s){const i=t.key;let n=Object.create(e)
+R(e,n.design.key,i),n.invoke(arguments,this)}};return i}static makeProperty(t,e,s){const i=t.key;let n=Object.create(e)
 ;n.configurable=!0;const r=e.value,o=e.get,c=e.set;return"function"==typeof o?"function"==typeof c?(n.get=function(){
 const e=OnDemandInvocationFactory.createPropertyInvocation(o,t);n.get=function(){return e.invoke([],this)}
 ;const r=OnDemandInvocationFactory.createPropertyInvocation(c,t);return n.set=function(){r.invoke(arguments,this)},
-A(s,i,n),e.invoke([],this)},n.set=function(){const e=OnDemandInvocationFactory.createPropertyInvocation(o,t)
+R(s,i,n),e.invoke([],this)},n.set=function(){const e=OnDemandInvocationFactory.createPropertyInvocation(o,t)
 ;n.get=function(){return e.invoke([],this)};const r=OnDemandInvocationFactory.createPropertyInvocation(c,t)
-;return n.set=function(){r.invoke(arguments,this)},A(s,i,n),r.invoke(arguments,this)}):n.get=function(){
+;return n.set=function(){r.invoke(arguments,this)},R(s,i,n),r.invoke(arguments,this)}):n.get=function(){
 const e=OnDemandInvocationFactory.createPropertyInvocation(o,t);return n.get=function(){return e.invoke([],this)},
-A(s,i,n),e.invoke([],this)}:"function"==typeof c?n.set=function(){
+R(s,i,n),e.invoke([],this)}:"function"==typeof c?n.set=function(){
 const e=OnDemandInvocationFactory.createPropertyInvocation(c,t);return n.set=function(){return e.invoke(arguments,this)
-},A(s,i,n),e.invoke(arguments,this)}:"function"==typeof r?n.value=function(){
+},R(s,i,n),e.invoke(arguments,this)}:"function"==typeof r?n.value=function(){
 let e=OnDemandInvocationFactory.createPropertyInvocation(r,t);return n.value=function(){return e.invoke(arguments,this)
-},A(s,i,n),e.invoke(arguments,this)}:n=this.makeField(t,s),n}}class ClassConstructors{static get v1(){
+},R(s,i,n),e.invoke(arguments,this)}:n=this.makeField(t,s),n}}class ClassConstructors{static get v1(){
 return N("ClassConstructors",this,"v1",(()=>new WeakMap))}}class ClassMembers{static get v1(){
 return N("ClassMembers",this,"v1",(()=>new WeakMap))}}class AgentAttribute{get interceptor(){return this}
 intercept(t,e,s){const[,i,n]=e;if(n.version){const r=n.target=Reflect.construct(i,[s,n]);return K(r,s),
@@ -190,25 +190,27 @@ return Reflect.construct(t,e,s)}}function Y(t,e,s){const i=Object.create(e||Refl
 ;const a=OnDemandInvocationFactory.createAgentInvocation(n,r,i).invoke([n.name,Proxy,i],n);return function(t,e){
 Agents.v1.set(e,t),Agents.v1.set(e.prototype,t.prototype)}(n,a),a}function L(){return Y}class Singletons{
 static get v1(){return N("Singletons",this,"v1",(()=>new WeakMap))}}class SingletonAttribute{constructor(t){this.type=t}
-get interceptor(){return this}intercept(t,e,s){const i=this.type,n=t.design&&t.design.type,r=i||n
-;if(!r)throw new AgentFrameworkError("UnknownSingletonType")
-;const o=i&&Singletons.v1.get(i.prototype)||n&&Singletons.v1.get(n.prototype);if(void 0===o){let i;i=U(r)?r:Y(r)
-;const n=Reflect.construct(i,e);return Singletons.v1.set(r.prototype,n),t.invoke([n],s)}return t.invoke([o],s)}}
-function J(t){return R(new SingletonAttribute(t))}
-const G="tslib",W=["assert","async_hooks","buffer","child_process","cluster","console","constants","crypto","dgram","dns","domain","events","fs","http","http2","https","inspector","module","net","os","path","perf_hooks","process","punycode","querystring","readline","repl","stream","string_decoder","timers","tls","trace_events","tty","url","util","v8","vm","zlib"]
-;function z(...t){return d.default.red(t.join(" "))}function H(...t){return d.default.yellow(t.join(" "))}
-function V(...t){return d.default.green(t.join(" "))}function Z(...t){return d.default.white(t.join(" "))}
-function Q(t,e){
-return`(${t} → ${e}) ${s=Math.floor(e/t*100),s>150?z(String(s)+"%"):s>100?H(String(s)+"%"):s>80?Z(String(s)+"%"):s>0?V(String(s)+"%"):""}`
-;var s}function X(s){const i=e.findConfigFile(s,e.sys.fileExists,"package.json");if(i)return t.dirname(i)}
-class Environment{constructor(){this.workingDir=e.sys.getCurrentDirectory();const t=X(this.workingDir)
-;if(!t)return console.log(z("Please run this command inside node.js project directory")),void process.exit(1)
-;this.homeDir=t;const s=X(function(t=2){const{stackTraceLimit:e}=Error;Error.stackTraceLimit=t;const s={}
+get interceptor(){return this}intercept(t,e,s){
+if(e.length)throw new AgentFrameworkError("NotAllowModifySingletonVariable");const i=t.invoke(e,s)
+;if(void 0!==i)return i;const n=this.type,r=t.design&&t.design.type,o=n||r
+;if(!o)throw new AgentFrameworkError("UnknownSingletonType")
+;const c=n&&Singletons.v1.get(n.prototype)||r&&Singletons.v1.get(r.prototype);if(void 0===c){let i;i=U(o)?o:Y(o)
+;const n=Reflect.construct(i,e);return Singletons.v1.set(o.prototype,n),t.invoke([n],s)}return t.invoke([c],s)}}
+function J(t){return A(new SingletonAttribute(t))}
+const G="tslib",W=["__decorate","__metadata","__param"],z=["assert","async_hooks","buffer","child_process","cluster","console","constants","crypto","dgram","dns","domain","events","fs","http","http2","https","inspector","module","net","os","path","perf_hooks","process","punycode","querystring","readline","repl","stream","string_decoder","timers","tls","trace_events","tty","url","util","v8","vm","zlib"]
+;function H(...t){return d.default.red(t.join(" "))}function V(...t){return d.default.yellow(t.join(" "))}
+function Z(...t){return d.default.green(t.join(" "))}function Q(...t){return d.default.white(t.join(" "))}
+function X(t,e){
+return`(${t} → ${e}) ${s=Math.floor(e/t*100),s>150?H(String(s)+"%"):s>100?V(String(s)+"%"):s>80?Q(String(s)+"%"):s>0?Z(String(s)+"%"):""}`
+;var s}function tt(s){const i=e.findConfigFile(s,e.sys.fileExists,"package.json");if(i)return t.dirname(i)}
+class Environment{constructor(){this.workingDir=e.sys.getCurrentDirectory();const t=tt(this.workingDir)
+;if(!t)return console.log(H("Please run this command inside node.js project directory")),void process.exit(1)
+;this.homeDir=t;const s=tt(function(t=2){const{stackTraceLimit:e}=Error;Error.stackTraceLimit=t;const s={}
 ;if(Error.captureStackTrace(s),
 Error.stackTraceLimit=e,"string"!=typeof s.stack)throw new Error("Unexpected stacktrace format:"+typeof s.stack)
 ;const i=s.stack.split("\n"),n=i[i.length-1],r=n.indexOf("("),o=n.lastIndexOf(")");let c
 ;c=r>0&&o>0?n.slice(r+1,o):n.slice(n.indexOf("at")+3);const a=c.lastIndexOf(":"),u=c.lastIndexOf(":",a-1)
-;return c.slice(0,u)}());if(!s)return console.log(z("Please reinstall tsb")),void process.exit(2);this.baseDir=s}}
+;return c.slice(0,u)}());if(!s)return console.log(H("Please reinstall tsb")),void process.exit(2);this.baseDir=s}}
 class TypeScript{get ScriptTarget(){return this.runtime.ScriptTarget}get ModuleKind(){return this.runtime.ModuleKind}
 get version(){return this.info.version}constructor(){const s=function(s){
 const i=e.findConfigFile(s,e.sys.fileExists,t.join("node_modules","typescript","package.json"));if(!i)return
@@ -221,10 +223,10 @@ getCurrentDirectory:i.getCurrentDirectory,getNewLine:()=>i.newLine}}readFile(t){
 return this.runtime.readConfigFile(t,this.runtime.sys.readFile)}resolve(e,s){return t.resolve(e,s)}formatDiagnostics(t){
 return this.runtime.formatDiagnosticsWithColorAndContext(t,this.formatDiagnosticsHost)}}
 F([J(),C("design:type",Environment)],TypeScript.prototype,"env",void 0);class CliService{get name(){return"tsb"}
-get version(){return"1.0.3"}get timestamp(){return"2024-07-31T10:06:38.093Z"}}function tt(e){const s=[];let i=e
+get version(){return"2.0.0"}get timestamp(){return"2024-08-13T10:35:38.112Z"}}function et(e){const s=[];let i=e
 ;for(;i;){s.push(i);const e=t.dirname(i);if(e===i)break;i=e}return s.reverse()}class TypeScriptFileSystem{constructor(){
 this.runtime=this.ts.runtime,this.sys=this.runtime.sys}get args(){return this.sys.args}get newLine(){
-return this.sys.newLine}get useCaseSensitiveFileNames(){return this.sys.useCaseSensitiveFileNames}mkdir(t){const e=tt(t)
+return this.sys.newLine}get useCaseSensitiveFileNames(){return this.sys.useCaseSensitiveFileNames}mkdir(t){const e=et(t)
 ;for(const t of e)this.directoryExists(t)||this.createDirectory(t)}copy(e,s){this.mkdir(t.dirname(s)),
 i.copyFileSync(e,s)}exists(t,...e){if(e.length){const s=this.resolvePath(t,...e)
 ;return this.sys.fileExists(s)||this.sys.directoryExists(s)}return this.sys.fileExists(t)||this.sys.directoryExists(t)}
@@ -247,42 +249,42 @@ if(!t.isAbsolute(e))throw new Error('Please use "joinPath" for relative pathname
 if(!t.isAbsolute(e))throw new Error('Please use "joinPath" for relative pathname: '+e)
 ;return i.length?this.runtime.findConfigFile(e,this.exists.bind(this),t.join(s,...i)):this.runtime.findConfigFile(e,this.exists.bind(this),s)
 }readFile(t,e){return this.sys.readFile(t,e)}write(t){this.sys.write(t)}writeFile(t,e,s){this.sys.writeFile(t,e,s)}}
-F([J(),C("design:type",TypeScript)],TypeScriptFileSystem.prototype,"ts",void 0);let et=class Service{}
-;F([J(),C("design:type",Environment)],et.prototype,"env",void 0),
-F([J(),C("design:type",TypeScript)],et.prototype,"ts",void 0),
-F([J(),C("design:type",TypeScriptFileSystem)],et.prototype,"fs",void 0),
-F([J(),C("design:type",CliService)],et.prototype,"cli",void 0),et=B([L()],et);class PackageInfoParser{read(t){
+F([J(),C("design:type",TypeScript)],TypeScriptFileSystem.prototype,"ts",void 0);let st=class Service{}
+;F([J(),C("design:type",Environment)],st.prototype,"env",void 0),
+F([J(),C("design:type",TypeScript)],st.prototype,"ts",void 0),
+F([J(),C("design:type",TypeScriptFileSystem)],st.prototype,"fs",void 0),
+F([J(),C("design:type",CliService)],st.prototype,"cli",void 0),st=B([L()],st);class PackageInfoParser{read(t){
 const e=this.ts.readFile(t);if(e.error&&console.log(this.ts.formatDiagnostics([e.error])),e.config){const s=e.config
 ;return s.path=t,s}}write(t,e){this.fs.writeFile(t,JSON.stringify(e))}}
 F([J(),C("design:type",TypeScript)],PackageInfoParser.prototype,"ts",void 0),
 F([J(),C("design:type",TypeScriptFileSystem)],PackageInfoParser.prototype,"fs",void 0);class IniFileParser{read(t){
 const e=this.fs.readFile(t,"utf-8");if(e)return require("ini").parse(e)}write(t,e){
 this.fs.writeFile(t,require("ini").stringify(e))}}
-F([J(),C("design:type",TypeScriptFileSystem)],IniFileParser.prototype,"fs",void 0);let st=class Repository extends et{
+F([J(),C("design:type",TypeScriptFileSystem)],IniFileParser.prototype,"fs",void 0);let it=class Repository extends st{
 constructor(t){if(super(),!t||!this.fs.fileExists(t,"HEAD"))throw new Error("Invalid repository path");this.path=t}
 getType(){return"git"}getHead(){const t=this.fs.readFile(this.fs.resolvePath(this.path,"HEAD"))
 ;if(t&&t.length>4)return t.slice(4).trim()}getReferenceTime(t){if(t){const e=this.fs.resolvePath(this.path,t)
 ;return i.statSync(e).ctime}}getCommit(t){if(t){const e=this.fs.readFile(this.fs.resolvePath(this.path,t))
 ;if(e&&e.length>4)return e.trim()}}getURL(){var t;const e=this.ini.read(this.fs.resolvePath(this.path,"config"))
 ;if(e)return null===(t=e['remote "origin"'])||void 0===t?void 0:t.url}}
-;F([J(),C("design:type",IniFileParser)],st.prototype,"ini",void 0),st=B([L(),C("design:paramtypes",[String])],st)
-;let it=class ModuleService extends et{getModuleByNameDirectory(e,s){let i=this.searchPackageJsonByDirectory(e,s);if(i){
+;F([J(),C("design:type",IniFileParser)],it.prototype,"ini",void 0),it=B([L(),C("design:paramtypes",[String])],it)
+;let nt=class ModuleService extends st{getModuleByNameDirectory(e,s){let i=this.searchPackageJsonByDirectory(e,s);if(i){
 const e=this.parser.read(i);if(e)return{info:e,path:t.dirname(i)}}}searchPackageJsonByDirectory(t,e){
 return this.ts.runtime.findConfigFile(e,this.ts.runtime.sys.fileExists,this.fs.joinPath("node_modules",t,"package.json"))
-}};F([J(),C("design:type",PackageInfoParser)],it.prototype,"parser",void 0),it=B([L()],it)
-;class CachedModuleService extends it{constructor(){super(...arguments),this.cache=new Map}resolveModule(t,e){
+}};F([J(),C("design:type",PackageInfoParser)],nt.prototype,"parser",void 0),nt=B([L()],nt)
+;class CachedModuleService extends nt{constructor(){super(...arguments),this.cache=new Map}resolveModule(t,e){
 if(this.cache.has(t))return this.cache.get(t);const s=this.getModuleByNameDirectory(t,e);if(s){const e={id:s.info.name,
 version:s.info.version,path:s.path,sideEffect:s.info.sideEffects,type:s.info.type};if(s.info.main){
 const t=this.fs.resolvePath(s.path,s.info.main);this.fs.fileExists(t)&&(e.main=t)}if(s.info.module){
 const t=this.fs.resolvePath(s.path,s.info.module);this.fs.fileExists(t)&&(e.module=t)}
 const i=s.info.typings||s.info.types;if(i){const t=this.fs.resolvePath(s.path,i);this.fs.fileExists(t)&&(e.types=t)}
 return this.cache.set(t,e),this.cache.set(e.id,e),e}}resolveSideEffectsFreeModule(t,e){const s=this.resolveModule(t,e)
-;if(s&&!1===s.sideEffect)return s}}let nt=class Project extends et{get repository(){
+;if(s&&!1===s.sideEffect)return s}}let rt=class Project extends st{get repository(){
 return this.t||(this.t=this.repositoryService.findRepository(this.path))}constructor(t,e){if(super(),
 !t)throw new Error("Invalid project path");if(this.path=t,!e)throw new Error("Invalid project info");this.packageInfo=e
 ;const s=this.dependentModules=new Set;if(e.dependencies)for(const t of Object.keys(e.dependencies))s.add(t)
 ;const i=this.devDependentModules=new Set;if(e.devDependencies)for(const t of Object.keys(e.devDependencies))i.add(t)
-;const n=this.getExternalPackageNames();this.importModuleNames=[...W,...n],this.inlineModuleNames=new Map
+;const n=this.getExternalPackageNames();this.importModuleNames=[...z,...n],this.inlineModuleNames=new Map
 ;const r=this.getDevelopmentPackageNames();for(const t of r){const e=this.cachedModuleService.resolveModule(t,this.path)
 ;e&&!1===e.sideEffect&&("module"===e.type&&e.main?this.inlineModuleNames.set(t,e.main):e.module&&this.inlineModuleNames.set(t,e.module))
 }this.importTypeModuleNames=[]}isDevelopmentModule(t){return this.devDependentModules.has(t)}find(t,e){
@@ -306,15 +308,15 @@ let t=this.fs.readFile(this.fs.resolvePath(this.path,"NOTICE"));if(!t){const e=n
 }const e=this.fs.newLine;return t.endsWith(e)||(t+=e),t}getConfigFileName(t){
 const e=this.fs.resolvePath(this.path,`tsconfig.${t}.json`),s=this.fs.resolvePath(this.path,"tsconfig.json");let i
 ;return i=this.fs.fileExists(e)?e:this.fs.fileExists(s)?s:"",i}}
-;F([J(),C("design:type",class RepositoryService extends et{findRepository(e){const s=this.fs.resolvePathUp(e,".git")
-;if(s){if(this.fs.directoryExists(s))return new st(s);if(this.fs.fileExists(s)){const e=this.fs.readFile(s)
-;if(e&&e.startsWith("gitdir:")){const i=e.slice(7).trim(),n=this.fs.resolvePath(t.dirname(s),i);return new st(n)}}}}
-})],nt.prototype,"repositoryService",void 0),
-F([J(),C("design:type",CachedModuleService)],nt.prototype,"cachedModuleService",void 0),
-nt=B([L(),C("design:paramtypes",[String,Object])],nt);class ProjectService extends et{load(t){
-const e=this.packageInfoParser.read(this.fs.resolvePath(t,"package.json"));if(e)return new nt(t,e)}}
+;F([J(),C("design:type",class RepositoryService extends st{findRepository(e){const s=this.fs.resolvePathUp(e,".git")
+;if(s){if(this.fs.directoryExists(s))return new it(s);if(this.fs.fileExists(s)){const e=this.fs.readFile(s)
+;if(e&&e.startsWith("gitdir:")){const i=e.slice(7).trim(),n=this.fs.resolvePath(t.dirname(s),i);return new it(n)}}}}
+})],rt.prototype,"repositoryService",void 0),
+F([J(),C("design:type",CachedModuleService)],rt.prototype,"cachedModuleService",void 0),
+rt=B([L(),C("design:paramtypes",[String,Object])],rt);class ProjectService extends st{load(t){
+const e=this.packageInfoParser.read(this.fs.resolvePath(t,"package.json"));if(e)return new rt(t,e)}}
 F([J(),C("design:type",PackageInfoParser)],ProjectService.prototype,"packageInfoParser",void 0)
-;let rt=class BuildContext extends et{constructor(e){super(),this.options=e,this.cacheDirName=".cache",
+;let ot=class BuildContext extends st{constructor(e){super(),this.options=e,this.cacheDirName=".cache",
 this.binaryDirName="bin",this.libraryDirName="lib",this.artifactDirName="public",this.configDirName="conf",
 this.settingsFileName="settings.js",this.outputPackageJsonFileName="package.json",
 this.defaultPackageFileNames=["Dockerfile","CHANGELOG.md","COPYRIGHT","LICENSE","NOTICE","README.md"],
@@ -323,24 +325,24 @@ printWidth:80,singleQuote:!0},this.tsCompilerOptions={},e.prod||e.rc||e.insiders
 this.mangle=!0,this.compress=!0,this.inline=!0,this.configuration="production"):(this.beautify=e.beautify,
 this.mangle=e.mangle,
 this.compress=e.compress,this.inline=e.inline,this.options.configuration?this.configuration=String.prototype.toLowerCase.apply(e.configuration):this.configuration="development")
-;const{in:s,out:i,target:n,beautify:o,rc:c,dev:a,insiders:u,release:l}=this.options;o&&(this.beautify=o),
+;const{in:s,out:i,target:n,beautify:o,rc:c,dev:a,insiders:u,release:h}=this.options;o&&(this.beautify=o),
 this.target=n?n.toLowerCase():"es2018",
 s?t.isAbsolute(s)?this.inputDir=s:this.inputDir=t.join(this.workingDir,s):this.inputDir=this.env.homeDir,
 i?t.isAbsolute(i)?this.outputDir=i:this.outputDir=t.join(this.workingDir,i):this.outputDir=t.join(this.inputDir,"release"),
 this.inputPackageJsonFileName=`package.${this.configuration}.json`,this.files=[]
-;const h=this.projectService.load(this.inputDir);if(!h)throw new Error("ERROR: Project not found in "+this.inputDir)
-;this.project=h,this.timestamp=new Date;let p="",d="";c?(p="rc","string"==typeof c&&(d=c)):a?(p="dev",
-d="string"==typeof a?a:this.date):u?(p="insiders",d="string"==typeof u?u:this.date):l&&(p=l,d=this.date),
-p?(this.version=r.coerce(h.packageInfo.version)+"-"+p,
-d&&(this.version=this.version+"."+d)):this.version=h.packageInfo.version,
+;const l=this.projectService.load(this.inputDir);if(!l)throw new Error("ERROR: Project not found in "+this.inputDir)
+;this.project=l,this.timestamp=new Date;let p="",d="";c?(p="rc","string"==typeof c&&(d=c)):a?(p="dev",
+d="string"==typeof a?a:this.date):u?(p="insiders",d="string"==typeof u?u:this.date):h&&(p=h,d=this.date),
+p?(this.version=r.coerce(l.packageInfo.version)+"-"+p,
+d&&(this.version=this.version+"."+d)):this.version=l.packageInfo.version,
 Reflect.has(e,"metadata")&&Reflect.set(this.tsCompilerOptions,"emitDecoratorMetadata",e.metadata),
 Reflect.has(e,"decorator")&&Reflect.set(this.tsCompilerOptions,"emitDecoratorMetadata",e.decorator)}get shouldInline(){
 return this.inline}get shouldBeautify(){return this.beautify}get shouldMangle(){return this.mangle}get shouldCompress(){
 return this.compress}get cliDir(){return this.env.baseDir}get workingDir(){return this.env.workingDir}get date(){
 const t=this.timestamp
 ;return t.getUTCFullYear()+String(t.getUTCMonth()+1).padStart(2,"0")+String(t.getUTCDate()).padStart(2,"0")}}
-;F([J(),C("design:type",ProjectService)],rt.prototype,"projectService",void 0),
-rt=B([L(),C("design:paramtypes",[Object])],rt);class JsonParser{read(t){
+;F([J(),C("design:type",ProjectService)],ot.prototype,"projectService",void 0),
+ot=B([L(),C("design:paramtypes",[Object])],ot);class JsonParser{read(t){
 const e=this.ts.runtime.readConfigFile(t,this.ts.runtime.sys.readFile)
 ;return e.error&&(console.log(this.ts.formatDiagnostics([e.error])),process.exit(1)),e.config}write(t,e,s){
 s?this.fs.writeFile(t,JSON.stringify(e,null,s)):this.fs.writeFile(t,JSON.stringify(e))}}
@@ -348,53 +350,66 @@ F([J(),C("design:type",TypeScript)],JsonParser.prototype,"ts",void 0),
 F([J(),C("design:type",TypeScriptFileSystem)],JsonParser.prototype,"fs",void 0);class JavaScriptParser{read(t){
 const e=this.ts.runtime.readConfigFile(t,this.ts.runtime.sys.readFile)
 ;return e.error&&(console.log(this.ts.formatDiagnostics([e.error])),process.exit(1)),e.config}write(t,e){
-throw new Error("Not Supported")}}function ot(t,e){return t=>n=>e.visitNode(n,(e=>i(0,e,t)||s(n,e,t)))
-;function s(t,n,r){return e.visitEachChild(n,(e=>i(0,e,r)||s(t,e,r)),r)}function i(s,i,n){if(e.isReturnStatement(i)){
-const s=i.expression;if(s&&(e.isStringLiteral(s)||e.isNoSubstitutionTemplateLiteral(s))){const e=s.getFullText().trim()
-;if(e.startsWith("/* replace::release.version */")){const e=n.factory.createStringLiteral(t.version)
-;return n.factory.createReturnStatement(e)}if(e.startsWith("/* replace::release.name */")){
-const e=n.factory.createStringLiteral(t.project.packageInfo.name);return n.factory.createReturnStatement(e)}
-if(e.startsWith("/* replace::release.timestamp */")){const e=n.factory.createStringLiteral(t.timestamp.toISOString())
-;return n.factory.createReturnStatement(e)}}}}}
-F([J(),C("design:type",TypeScript)],JavaScriptParser.prototype,"ts",void 0)
-;const ct=new Set(["__decorate","__metadata","__param"]);function at(t,e){return t=>s=>{const i=new WeakSet,n=new Map
-;return e.visitNode(s,(e=>o(0,e,t)||r(s,e,t)));function r(t,s,i){return e.visitEachChild(s,(e=>o(0,e,i)||r(t,e,i)),i)}
-function o(t,s,n){if(e.isImportDeclaration(s)){const t=s.moduleSpecifier;if(e.isStringLiteral(t)&&t.text===G){
-const{importClause:t}=s;if(t){const{namedBindings:i}=t;if(i&&e.isNamedImports(i)){const t=[],r=[]
-;if(i.elements.forEach((s=>{e.isIdentifier(s.name)&&(ct.has(s.name.text)?r.push(s):t.push(s))})),
-i.elements.length===t.length)return;const o=[],a=n.factory
-;return t.length&&o.push(a.createImportDeclaration(s.decorators,s.modifiers,a.createImportClause(!1,void 0,a.createNamedImports(a.createNodeArray(t))),a.createStringLiteral(G))),
-r.length&&(r.push(a.createImportSpecifier(!1,void 0,c("__agent"))),
-o.push(a.createImportDeclaration(s.decorators,s.modifiers,a.createImportClause(!1,void 0,a.createNamedImports(a.createNodeArray(r))),a.createStringLiteral("agentframework")))),
-o.length>1?o:1===o.length?o[0]:void 0}}}}else if(e.isCallExpression(s)){if(2===s.arguments.length){const t=s.expression
-;t&&(e.isIdentifier(t)?"__decorate"===t.text&&i.add(t):e.isPropertyAccessExpression(t)&&"__decorate"===t.name.text&&i.add(t))
-}}else if(i.has(s))return c("__agent")}function c(e){let s=n.get(e);return s||(s=t.factory.createIdentifier(e),
-n.set(e,s)),s}}}class TypeScriptCompiler extends et{constructor(){super(...arguments),this.artifacts=new Map,
-this.codes=new Map,this.types=new Map,this.maps=new Map}async build(t){
+throw new Error("Not Supported")}}F([J(),C("design:type",TypeScript)],JavaScriptParser.prototype,"ts",void 0)
+;class BaseTransformer{constructor(t,e,s){this.buildContext=t,this.program=e,this.transformationContext=s,
+this.tsc=t.ts.runtime,this.types=e.getTypeChecker(),this.factory=s.factory}visitNextNode(t,e){
+return this.tsc.visitEachChild(t,(t=>this.visitor(t,e)),this.transformationContext)}run(t){
+return this.tsc.visitEachChild(t,(e=>this.visitor(e,t)),this.transformationContext)}}
+class MacroTransformer extends BaseTransformer{constructor(){super(...arguments),
+this.macroTokenRegex=/\*\s*replace::(.*?)\s*\*/}findMacroToken(t){const e=t.match(this.macroTokenRegex)
+;return e?e[1]:void 0}replaceMacroValue(t){const e=this.buildContext
+;return"release.version"===t?e.version:"release.name"===t?e.project.packageInfo.name:"release.timestamp"===t?e.timestamp.toISOString():void 0
+}visitor(t,e){if(this.tsc.isReturnStatement(t)){if(t.getChildCount()>=2){const s=t.getChildAt(1)
+;if(this.tsc.isStringLiteral(s)){const t=s.getLeadingTriviaWidth(e);if(t>6){
+const e=s.getFullText().slice(0,t),i=this.findMacroToken(e);if(i){const t=this.replaceMacroValue(i)
+;if(console.log(`Found macro replace::${i} with value "${t}"`),t){
+const e=this.transformationContext.factory,s=e.createStringLiteral(t);return e.createReturnStatement(s)}}}}}return t}
+return this.visitNextNode(t,e)}}function ct(t,e){return s=>{const i=new MacroTransformer(t,e,s);return t=>i.run(t)}}
+class AgentFrameworkTransformer extends BaseTransformer{constructor(){super(...arguments),this.matcher=new Set(W),
+this.shouldReplaceWithAgentDecorate=new WeakSet,this.ids=new Map}identifier(t){let e=this.ids.get(t)
+;return e||(e=this.transformationContext.factory.createIdentifier(t),this.ids.set(t,e)),e}createImport(t,e,s){
+const i=this.transformationContext.factory
+;return i.createImportDeclaration(t,i.createImportClause(!1,void 0,i.createNamedImports(i.createNodeArray(e))),i.createStringLiteral(s))
+}expectImportDeclaration(t,e){const s=this.tsc,i=t.moduleSpecifier;if(s.isStringLiteral(i)&&i.text===G){
+const{importClause:e}=t;if(e){const{namedBindings:i}=e;if(i&&s.isNamedImports(i)){const e=[],n=[]
+;if(i.elements.forEach((t=>{s.isIdentifier(t.name)&&(this.matcher.has(t.name.text)?n.push(t):e.push(t))})),
+i.elements.length===e.length)return;const r=[],o=this.transformationContext.factory
+;return e.length&&r.push(this.createImport(t.modifiers,e,G)),
+n.push(o.createImportSpecifier(!1,void 0,this.identifier("__agent"))),
+r.push(this.createImport(t.modifiers,n,"agentframework")),r.length>1?r:1===r.length?r[0]:void 0}}}return t}
+expectAgentIdentifier(t,e){return this.identifier("__agent")}expectCallExpression(t,e){if(2===t.arguments.length){
+const s=t.expression;if(s){
+if(this.tsc.isIdentifier(s)&&"__decorate"===s.text)return this.tsc.visitEachChild(t,(t=>t!==s?t:this.expectAgentIdentifier(s,e)),this.transformationContext)
+;if(this.tsc.isPropertyAccessExpression(s)){const t=s.expression.getText(e),i=s.name.text
+;if(t===G&&"__decorate"===i)throw new Error("Not support replace tslib.__decorate to something else")}}}return t}
+visitor(t,e){
+return this.tsc.isImportDeclaration(t)?this.expectImportDeclaration(t,e):this.tsc.isCallExpression(t)?this.expectCallExpression(t,e):this.shouldReplaceWithAgentDecorate.has(t)?this.identifier("__agent"):this.visitNextNode(t,e)
+}}function at(t,e){return s=>{const i=new AgentFrameworkTransformer(t,e,s);return t=>i.run(t)}}
+class TypeScriptCompiler extends st{constructor(){super(...arguments),this.artifacts=new Map,this.codes=new Map,
+this.types=new Map,this.maps=new Map}async build(t){
 const{inputDir:e,outputDir:s,configuration:i,target:n}=t,r=t.fs.resolvePath(s,t.cacheDirName),o=t.project.getConfigFileName(i)
 ;if(!o)throw new Error("tsconfig.json not found");this.runtime=t.ts.runtime
-;const{ScriptTarget:c,ModuleKind:a}=t.ts.runtime;let u,l;switch(n){case"es2015":u=c.ES2015,l=a.ES2015;break
-;case"es2016":u=c.ES2016,l=a.ES2015;break;case"es2017":u=c.ES2017,l=a.ES2015;break;case"es2018":u=c.ES2018,l=a.ES2015
-;break;case"es2019":u=c.ES2019,l=a.ES2015;break;case"es2020":u=c.ES2020,l=a.ES2020;break;case"esnext":u=c.ESNext,
-l=a.ESNext;default:return console.log(z("Build target only support es2015 or later")),void process.exit(1)}
-this.scriptTarget=u,this.moduleKind=l,console.log(H("Start compile project targeting",n,"with config",o))
-;const h=t.project.findBinFiles(t.binaryDirName),p=t.project.findLibraryFiles(t.libraryDirName),d=t.project.findMainFile(),f=[...h,...p].map((t=>t[1]))
-;if(d){const[t,e]=d;f.push(e)}const g={target:u,module:l,importHelpers:!0,noEmit:!1,sourceMap:!0,inlineSourceMap:!1,
+;const{ScriptTarget:c,ModuleKind:a}=t.ts.runtime;let u,h;switch(n){case"es2015":u=c.ES2015,h=a.ES2015;break
+;case"es2016":u=c.ES2016,h=a.ES2015;break;case"es2017":u=c.ES2017,h=a.ES2015;break;case"es2018":u=c.ES2018,h=a.ES2015
+;break;case"es2019":u=c.ES2019,h=a.ES2015;break;case"es2020":u=c.ES2020,h=a.ES2020;break;case"esnext":u=c.ESNext,
+h=a.ESNext;default:return console.log(H("Build target only support es2015 or later")),void process.exit(1)}
+this.scriptTarget=u,this.moduleKind=h,console.log(V("Start compile project targeting",n,"with config",o))
+;const l=t.project.findBinFiles(t.binaryDirName),p=t.project.findLibraryFiles(t.libraryDirName),d=t.project.findMainFile(),f=[...l,...p].map((t=>t[1]))
+;if(d){const[t,e]=d;f.push(e)}const g={target:u,module:h,importHelpers:!0,noEmit:!1,sourceMap:!0,inlineSourceMap:!1,
 declaration:!!d,declarationMap:!1,removeComments:!0,incremental:!0,tsBuildInfoFile:t.fs.resolvePath(r,"buildinfo.json")
 },m=this.createProgram(t,f,o,Object.assign(g,t.tsCompilerOptions));this.typeChecker=m.getTypeChecker(),
 this.cache=t.ts.runtime.createModuleResolutionCache(e,(t=>t),this.compilerOptions);let y=0,v=0,S=0;const w={}
-;w.before=[ot(t,this.runtime)],w.after=[at(0,this.runtime)],d&&(w.afterDeclarations=[])
-;let b=t.ts.runtime.getPreEmitDiagnostics(m)
+;w.before=[ct(t,m)],w.after=[at(t,m)],d&&(w.afterDeclarations=[]);let b=t.ts.runtime.getPreEmitDiagnostics(m)
 ;b.length&&(b=b.filter((t=>!(1===t.category&&2354===t.code&&"string"==typeof t.messageText&&t.messageText.indexOf("tslib")>=0)))),
-b.length&&(console.log(H("Pre Emit Diagnostics")),console.log(t.ts.formatDiagnostics(b)))
+b.length&&(console.log(V("Pre Emit Diagnostics")),console.log(t.ts.formatDiagnostics(b)))
 ;const P=m.emit(void 0,((t,e)=>{if(this.artifacts.set(t,e),t.endsWith(".js")){
 const s=t.slice(0,-3)+".ts",i=m.getSourceFile(s);if(i){const t=i.getFullText(),n=t.length;S++,y+=n,v+=e.length,
-console.log("Building",s,Q(n,e.length)),this.artifacts.set(s,t),this.codes.set(s,e)}}else if(t.endsWith(".js.map")){
+console.log("Building",s,X(n,e.length)),this.artifacts.set(s,t),this.codes.set(s,e)}}else if(t.endsWith(".js.map")){
 const s=t.slice(0,-7)+".ts";this.maps.set(s,JSON.parse(e))}else if(t.endsWith(".d.ts")){const s=t.slice(0,-5)+".ts"
 ;this.types.set(s,e)}}),void 0,!1,w);P.diagnostics.length&&(console.log("Emit Diagnostics"),
 console.log(t.ts.formatDiagnostics(P.diagnostics)));const x=b.length+P.diagnostics.length
-;P.emitSkipped?(console.log(H("Build stopped")),process.exit(1)):x&&console.log(H("Continue build with emit error")),
-console.log(`Built ${S} files`,Q(y,v))}resolveModuleName(t,e){if(this.compilerOptions&&this.cache&&e&&this.cache){
+;P.emitSkipped?(console.log(V("Build stopped")),process.exit(1)):x&&console.log(V("Continue build with emit error")),
+console.log(`Built ${S} files`,X(y,v))}resolveModuleName(t,e){if(this.compilerOptions&&this.cache&&e&&this.cache){
 let s=this.ts.runtime.resolveModuleNameFromCache(t,e,this.cache);if(s&&s.resolvedModule)return s.resolvedModule
 ;if(this.compilerHost){const s=this.ts.runtime.resolveModuleName(t,e,this.compilerOptions,this.compilerHost,this.cache)
 ;if(s&&s.resolvedModule)return s.resolvedModule
@@ -404,12 +419,14 @@ let s=this.ts.runtime.resolveModuleNameFromCache(t,e,this.cache);if(s&&s.resolve
 createSourceFile(t,e,s){
 return this.ts.runtime.createSourceFile(t,e,s||this.scriptTarget||this.ts.runtime.ScriptTarget.ESNext,!0)}getCode(t){
 return this.codes.get(t)}getTyping(t){return this.types.get(t)}hasArtifact(t){return this.artifacts.has(t)}
-getArtifact(t){return this.artifacts.get(t)}createProgram(t,e,s,i){const n=t.ts,r=[],o=Object.assign({},n.runtime.sys,{
-onUnRecoverableConfigFileDiagnostic(t){r.push(t)}}),c=n.runtime.getParsedCommandLineOfConfigFile(s,i,o);let a
-;c&&c.options&&(a=c.options),a&&!r.length||(console.log(n.formatDiagnostics(r)),process.exit(1)),this.compilerOptions=a
-;const u=this.compilerHost=n.runtime.createCompilerHost(a)
-;return console.log(Z("create a program with entries"),e.join(", ")),
-this.program=n.runtime.createProgram(e,a,u,void 0,r||void 0)}}
+getArtifact(t){return this.artifacts.get(t)}createProgram(t,e,s,i){const n=t.ts,r=[],o={useCaseSensitiveFileNames:!1,
+fileExists:n.runtime.sys.fileExists,getCurrentDirectory:n.runtime.sys.getCurrentDirectory,
+readDirectory:n.runtime.sys.readDirectory,readFile:n.runtime.sys.readFile,onUnRecoverableConfigFileDiagnostic:t=>{
+r.push(t)}},c=n.runtime.getParsedCommandLineOfConfigFile(s,i,o);let a;c&&c.options&&(a=c.options),
+a&&!r.length||(console.log(n.formatDiagnostics(r)),process.exit(1)),this.compilerOptions=a
+;const u=this.compilerHost=n.runtime.createCompilerHost(a),h=[...new Set(e)]
+;console.log(Q("create a program with entries"),h.join(", "));const l={rootNames:h,options:a,host:u,
+configFileParsingDiagnostics:r||void 0};return this.program=n.runtime.createProgram(l)}}
 F([J(),C("design:type",ProjectService)],TypeScriptCompiler.prototype,"project",void 0);class TypeScriptParser{read(t){
 const e=this.compiler.program,s=this.ts.runtime.sys.readFile(t);if(!e||!s)return{}
 ;const i=this.compiler.getSourceFile(t)||this.compiler.createSourceFile(t,s);return console.log("return emit",i),{OKOK:1
@@ -427,7 +444,7 @@ this.fs.writeFile(t,require("js-yaml").dump(e))}}
 F([J(),C("design:type",TypeScriptFileSystem)],YamlFileParser.prototype,"fs",void 0);class SettingsLoader{
 applySettings(t,e,s){if("object"!=typeof e)throw new Error("Invalid settings file: "+t);const i=[]
 ;for(const t of Object.keys(e))"function"!=typeof e[t]&&(s[t]=e[t],i.push(t))
-;1===i.length?console.log(Z(`Applied a key from '${t}'`)):i.length?console.log(Z(`Applied ${i.length} keys from '${t}'`)):console.log(Z(`No config key in '${t}'`))
+;1===i.length?console.log(Q(`Applied a key from '${t}'`)):i.length?console.log(Q(`Applied ${i.length} keys from '${t}'`)):console.log(Q(`No config key in '${t}'`))
 }getFile(e,s,i){const n=t.resolve(e,s+"."+i);if(this.fs.fileExists(n))return n
 ;console.log(`Settings file '${n}' is not found, ignoring...`)}applyJsonFileSettings(t,e,s){
 const i=this.getFile(t,e,"json");return!!i&&(this.applySettings(i,this.json.read(i),s),!0)}applyJsFileSettings(t,e,s){
@@ -454,9 +471,9 @@ t.indexOf(".")>=0?s+=`exports["${t}"] = ${JSON.stringify(e[t])};`:s+=`exports.${
 F([J(),C("design:type",ProjectService)],SettingsWriter.prototype,"project",void 0),
 F([J(),C("design:type",TypeScriptFileSystem)],SettingsWriter.prototype,"fs",void 0);class ConfigurationBuilder{
 async build(t){const e=this.fs.resolvePath(t.inputDir,t.configDirName)
-;if(!this.fs.directoryExists(e))return void console.log(H("Ignore settings because config dir not exits",e))
+;if(!this.fs.directoryExists(e))return void console.log(V("Ignore settings because config dir not exits",e))
 ;const s=this.fs.resolvePath(t.outputDir,t.configDirName),i=this.fs.resolvePath(s,t.settingsFileName)
-;console.log(H("Reading settings from",e));const n={};this.settings.applyFileSettingsInSequence(e,"settings",n),
+;console.log(V("Reading settings from",e));const n={};this.settings.applyFileSettingsInSequence(e,"settings",n),
 this.settings.applyFileSettingsInSequence(e,"settings.local",n),
 this.settings.applyFileSettingsInSequence(e,t.configuration,n),
 this.settings.applyFileSettingsInSequence(e,t.configuration+".local",n),n.NAME=t.project.packageInfo.name,
@@ -464,7 +481,7 @@ n.VERSION=t.project.packageInfo.version;const r=t.project.repository;if(r){n.BUI
 n.BUILD_REPOSITORY=r.getURL();const t=r.getHead();t&&(n.BUILD_BRANCH=t,n.BUILD_COMMIT=r.getCommit(t))}
 n.BUILD_TIME=(new Date).toISOString(),
 n.BUILD_CLI_VERSION=this.cli.version,n.BUILD_NODE_VERSION=process.version.slice(1),n.BUILD_TS_VERSION=this.ts.version,
-n.BUILD_HOST=o.hostname(),console.log(H(`Writing ${Object.keys(n).length} setting keys to`,i)),
+n.BUILD_HOST=o.hostname(),console.log(V(`Writing ${Object.keys(n).length} setting keys to`,i)),
 this.settingsWriter.write(i,n,t.project.getHeader())}}
 F([J(),C("design:type",TypeScript)],ConfigurationBuilder.prototype,"ts",void 0),
 F([J(),C("design:type",TypeScriptFileSystem)],ConfigurationBuilder.prototype,"fs",void 0),
@@ -473,54 +490,54 @@ F([J(),C("design:type",SettingsWriter)],ConfigurationBuilder.prototype,"settings
 F([J(),C("design:type",ProjectService)],ConfigurationBuilder.prototype,"project",void 0),
 F([J(),C("design:type",CliService)],ConfigurationBuilder.prototype,"cli",void 0);class ArtifactBuilder{async build(t){
 const{outputDir:e}=t,s=this.fs.resolvePath(t.inputDir,t.artifactDirName)
-;if(!this.fs.directoryExists(s))return void console.log(H("Ignore artifacts because dir not exits",s))
+;if(!this.fs.directoryExists(s))return void console.log(V("Ignore artifacts because dir not exits",s))
 ;console.log("Building artifacts")
 ;const i=s.length,n=this.fs.resolvePath(e,t.artifactDirName),r=this.fs.readDirectory(s)
-;console.log(H(`Start copying ${r.length} from`,s));for(const t of r){const e=t.slice(i),s=this.fs.joinPath(n,e)
-;this.fs.copy(t,s)}console.log(H(`Complete copy ${r.length} files`))}}
+;console.log(V(`Start copying ${r.length} from`,s));for(const t of r){const e=t.slice(i),s=this.fs.joinPath(n,e)
+;this.fs.copy(t,s)}console.log(V(`Complete copy ${r.length} files`))}}
 F([J(),C("design:type",TypeScriptFileSystem)],ArtifactBuilder.prototype,"fs",void 0);class PackageBuilder{
 async build(t){const{outputDir:e,inputDir:s}=t,i=new Set,n=t.defaultPackageFileNames
-;console.log(H("Start copy project files"));let r=0;for(const t of n)this.fs.fileExists(s,t)&&i.add(t)
+;console.log(V("Start copy project files"));let r=0;for(const t of n)this.fs.fileExists(s,t)&&i.add(t)
 ;const o=t.project.packageInfo.files;if(o&&o.length)for(const t of o)this.fs.fileExists(s,t)&&i.add(t)
 ;if(i.size)for(const n of i){const i=this.fs.resolvePath(s,n),o=this.fs.resolvePath(e,n);this.fs.copy(i,o),
-t.files.push(n),r++}console.log(H(`Complete copy ${r} files`))}}function ut(t){if(!t.size)return;const e={}
-;for(const[s,i]of t.entries())e[s]=i;return e}function lt(e){let s=e,i=t.dirname(s);if("."===i)return i;for(s=i;s;){
+t.files.push(n),r++}console.log(V(`Complete copy ${r} files`))}}function ut(t){if(!t.size)return;const e={}
+;for(const[s,i]of t.entries())e[s]=i;return e}function ht(e){let s=e,i=t.dirname(s);if("."===i)return i;for(s=i;s;){
 const e=t.dirname(s);if(e===s)return e;if("."===e)return s;s=e}return s}
 F([J(),C("design:type",TypeScriptFileSystem)],PackageBuilder.prototype,"fs",void 0);class PackageFileBuilder{
 async build(e){
 const{outputDir:s}=e,i=this.fs.resolvePath(e.inputDir,e.inputPackageJsonFileName),n=this.fs.resolvePath(e.outputDir,e.outputPackageJsonFileName)
 ;if(this.fs.fileExists(i)){const t=this.json.read(i);t.version=e.project.packageInfo.version,this.json.write(n,t),
-console.log(V("Generate package.json from template"))}else{
+console.log(Z("Generate package.json from template"))}else{
 const i=e.project.packageInfo,r=new Map,o=i.sideEffects,c=new Set(i.files||[]),a=e.project.findBinFiles(e.binaryDirName)
 ;if(a.length)for(const t of a)t[2]&&r.set(t[2],t[0]+".js");r.size&&c.add(e.binaryDirName)
 ;const u=this.fs.resolvePath(s,e.configDirName)
 ;this.fs.directoryExists(u)&&this.fs.readDirectory(u).length&&c.add(e.configDirName)
-;const l=this.fs.resolvePath(s,e.libraryDirName)
-;this.fs.directoryExists(l)&&this.fs.readDirectory(l).length&&c.add(e.libraryDirName)
-;const h=this.fs.resolvePath(s,e.artifactDirName);let p,d,f,g
-;if(this.fs.directoryExists(h)&&this.fs.readDirectory(h).length&&c.add(e.artifactDirName),i.main){
+;const h=this.fs.resolvePath(s,e.libraryDirName)
+;this.fs.directoryExists(h)&&this.fs.readDirectory(h).length&&c.add(e.libraryDirName)
+;const l=this.fs.resolvePath(s,e.artifactDirName);let p,d,f,g
+;if(this.fs.directoryExists(l)&&this.fs.readDirectory(l).length&&c.add(e.artifactDirName),i.main){
 const e=i.main.slice(0,0-t.extname(i.main).length);p=e+".js",d=e+".mjs",f=e+".d.ts",
-console.log(Z("Found main entry in package.json: "+e))}else{const t=e.defaultEntryPathNames,i=e.defaultEntryName
+console.log(Q("Found main entry in package.json: "+e))}else{const t=e.defaultEntryPathNames,i=e.defaultEntryName
 ;for(const e of t){const t=this.fs.joinPath(e,i+".js"),n=this.fs.joinPath(e,i+".mjs"),r=this.fs.joinPath(e,i+".d.ts")
 ;if(this.fs.fileExists(s,t)&&(p=t),this.fs.fileExists(s,n)&&(d=n),this.fs.fileExists(s,r)&&(f=r),p||d||f){
-console.log(Z(`Found entry from ${e}: lib: ${p}, module: ${d}, type: ${f}`));break}}}p&&c.add(p),d&&c.add(d),f&&c.add(f)
+console.log(Q(`Found entry from ${e}: lib: ${p}, module: ${d}, type: ${f}`));break}}}p&&c.add(p),d&&c.add(d),f&&c.add(f)
 ;for(const t of e.files)c.add(t);if(i.dependencies){g={};for(const t of Object.keys(i.dependencies)){
 const s=i.dependencies[t];if(s&&s.startsWith("github:"))g[t]=s;else{
 const i=this.fs.resolvePath(e.project.path,"node_modules",t,"package.json");if(this.fs.fileExists(i)){
 const e=require(i).version;g[t]=e}else g[t]=s}}}else g=void 0;const m={name:i.name,version:e.version,engines:i.engines,
 sideEffects:o,bin:ut(r),description:i.description,author:i.author,license:i.license,repository:i.repository,bugs:i.bugs,
 homepage:i.homepage,keywords:i.keywords,type:p?"commonjs":d?"module":void 0,main:p||d,module:d,"jsnext:main":d,types:f,
-typings:f,files:this.generateFiles(e,c),dependencies:g,imports:i.imports,exports:i.exports};d&&!m.exports&&(m.exports={
-".":{import:d,require:p,types:f}}),this.json.write(n,m,2),console.log("Generated package.json")}}generateFiles(t,e){
-const s=new Set;for(const i of e){const e=lt(i)
+typings:f,files:this.generateFiles(e,c),dependencies:g,imports:i.imports,exports:i.exports}
+;d&&p&&f&&!m.exports&&(m.exports={".":{import:"./"+d,require:"./"+p,types:"./"+f}}),this.json.write(n,m,2),
+console.log("Generated package.json")}}generateFiles(t,e){const s=new Set;for(const i of e){const e=ht(i)
 ;"."===e?this.fs.exists(t.outputDir,i)&&s.add(i):this.fs.directoryExists(t.outputDir,e)&&s.add(e)}return function(t){
 if(!t.size)return;const e=[];for(const s of t.keys())e.push(s);return e.sort()}(s)}}
 F([J(),C("design:type",TypeScriptFileSystem)],PackageFileBuilder.prototype,"fs",void 0),
 F([J(),C("design:type",JsonParser)],PackageFileBuilder.prototype,"json",void 0),
 F([J(),C("design:type",ProjectService)],PackageFileBuilder.prototype,"project",void 0)
-;class TypeScriptLibrary extends et{constructor(){super();let t=this.cms.resolveModule(G,this.env.baseDir)
+;class TypeScriptLibrary extends st{constructor(){super();let t=this.cms.resolveModule(G,this.env.baseDir)
 ;if(t||(t=this.cms.resolveModule(G,this.env.homeDir)),t||(t=this.cms.resolveModule(G,this.env.workingDir)),
-!t)return console.log(z("tslib is not found, exit program")),void process.exit(1);this.desc=t}get entryModulePath(){
+!t)return console.log(H("tslib is not found, exit program")),void process.exit(1);this.desc=t}get entryModulePath(){
 return this.desc.module}get entryTypingPath(){return this.desc.types}}
 F([J(),C("design:type",CachedModuleService)],TypeScriptLibrary.prototype,"cms",void 0);class RollupPluginScriptBundler{
 createPlugin(t){
@@ -528,7 +545,7 @@ const e=this.compiler,s=this.tslib.entryModulePath,i=t.shouldInline?t.project.in
 ;return{name:"rollup-plugin-ts-bundler",resolveId(t,r){if(!r)return t;if(t===G)return s?{id:s,moduleSideEffects:!1}:{
 id:G,external:!0};if(i){const e=i.get(t);if(e)return{id:e}}if(n.has(t))return{id:t,external:!0}
 ;const o=e.resolveModuleName(t,r)
-;return o?o.packageId?(console.log(H(`Import ${o.packageId.name} as external module from ${r}`)),{id:o.packageId.name,
+;return o?o.packageId?(console.log(V(`Import ${o.packageId.name} as external module from ${r}`)),{id:o.packageId.name,
 external:!0}):{id:o.resolvedFileName}:null},load:t=>e.getCode(t),transform:(t,s)=>t?{code:t,map:e.getSourceMap(s)}:null}
 }}F([J(),C("design:type",TypeScriptCompiler)],RollupPluginScriptBundler.prototype,"compiler",void 0),
 F([J(),C("design:type",TypeScriptLibrary)],RollupPluginScriptBundler.prototype,"tslib",void 0)
@@ -554,13 +571,13 @@ if(!this.tsc.isPropertyAssignment(t)||!this.tsc.isIdentifier(t.name)&&!this.tsc.
 exports:a,location:i})}return{namespaces:t,itemTypes:e}}fix(){let t=this.sourceFile.getFullText()
 ;const{namespaces:e,itemTypes:s}=this.findNamespaces();for(const i of e){const e=t.slice(i.location.end)
 ;t=t.slice(0,i.location.start);for(const{exportedName:e,localName:n}of i.exports)if(e===n){
-const{type:r,generics:o}=s[n]||{};if("interface"===r||"type"===r){const s=ht(o)
-;t+=`type ${i.name}_${e}${s} = ${n}${s};\n`}else if("enum"===r||"class"===r){const s=ht(o)
+const{type:r,generics:o}=s[n]||{};if("interface"===r||"type"===r){const s=lt(o)
+;t+=`type ${i.name}_${e}${s} = ${n}${s};\n`}else if("enum"===r||"class"===r){const s=lt(o)
 ;t+=`type ${i.name}_${e}${s} = ${n}${s};\n`,t+=`declare const ${i.name}_${e}: typeof ${n};\n`
 }else t+=`declare const ${i.name}_${e}: typeof ${n};\n`}if(i.name){t+=`declare namespace ${i.name} {\n`,
 t+="  export {\n"
 ;for(const{exportedName:e,localName:s}of i.exports)t+=e===s?`    ${i.name}_${e} as ${e},\n`:`    ${s} as ${e},\n`
-;t+="  };\n",t+="}"}t+=e}return t}}function ht(t){return t?`<${Array.from({length:t},((t,e)=>"_"+e)).join(", ")}>`:""}
+;t+="  };\n",t+="}"}t+=e}return t}}function lt(t){return t?`<${Array.from({length:t},((t,e)=>"_"+e)).join(", ")}>`:""}
 function pt(t,e,s){var i;let n=!1
 ;const r=s.isClassDeclaration(e)||s.isFunctionDeclaration(e)||s.isModuleDeclaration(e)||s.isVariableStatement(e)
 ;for(const r of null!==(i=e.modifiers)&&void 0!==i?i:[])switch(r.kind){case s.SyntaxKind.ExportKeyword:
@@ -707,9 +724,9 @@ local:t.propertyName?vt(t.propertyName):e}}}function St(e){const s=t.extname(e),
 const e=t.ts.runtime,s=this.compiler,i=this.module,n=new AstHelper(e),r=new Map,o=t.project.inlineModuleNames,c=new Set(t.project.importModuleNames),a=this.tslib.entryTypingPath
 ;return{name:"rollup-plugin-dts-bundler",resolveId(t,e){if(!e)return t;if(t===G)return c.has(G)||!a?{id:G,external:!0}:{
 id:a};if(o&&o.has(t)){const s=i.resolveSideEffectsFreeModule(t,e);if(s&&s.types)return{id:s.types}
-;console.log(z(`Can not find inline module "${t}" from ${e}`))}if(c.has(t))return{id:t,external:!0}
+;console.log(H(`Can not find inline module "${t}" from ${e}`))}if(c.has(t))return{id:t,external:!0}
 ;const n=s.resolveModuleName(t,e)
-;return n?n.packageId?(console.log(H(`Import external definition "${n.packageId.name}" from ${e}`)),{
+;return n?n.packageId?(console.log(V(`Import external definition "${n.packageId.name}" from ${e}`)),{
 id:n.packageId.name,external:!0}):{id:St(n.resolvedFileName)}:null},load:t=>s.getArtifact(t),transform(t,e){
 const i=s.createSourceFile(e,t),o=function({sourceFile:t,helper:e}){
 const s=e.tsc,i=new f.default(t.getFullText()),n=new Set,r=new Set;let o="";const c=new Map,a=new Map
@@ -722,20 +739,20 @@ const{declarations:t}=c.declarationList,o=e.matchesModifier(c,s.ModifierFlags.Ex
 if(pt(i,c,s),1==t.length){const e=t[0];s.isIdentifier(e.name)&&d(e.name.getText(),[dt(c),ft(c)])}else{
 const e=t.slice(),i=e.shift();d(i.name.getText(),[dt(c),i.getEnd()])
 ;for(const t of e)s.isIdentifier(t.name)&&d(t.name.getText(),[t.getFullStart(),t.getEnd()])}
-const{flags:a}=c.declarationList,u=`declare ${a&s.NodeFlags.Let?"let":a&s.NodeFlags.Const?"const":"var"} `,l=c.declarationList.getChildren().find((t=>t.kind===s.SyntaxKind.SyntaxList)).getChildren()
-;let h=0;for(const t of l)if(t.kind===s.SyntaxKind.CommaToken)h=t.getStart(),i.remove(h,t.getEnd());else if(h){
-i.appendLeft(h,";\n");const e=t.getFullStart(),s=i.slice(e,t.getStart());let n=s.length-s.trimStart().length
+const{flags:a}=c.declarationList,u=`declare ${a&s.NodeFlags.Let?"let":a&s.NodeFlags.Const?"const":"var"} `,h=c.declarationList.getChildren().find((t=>t.kind===s.SyntaxKind.SyntaxList)).getChildren()
+;let l=0;for(const t of h)if(t.kind===s.SyntaxKind.CommaToken)l=t.getStart(),i.remove(l,t.getEnd());else if(l){
+i.appendLeft(l,";\n");const e=t.getFullStart(),s=i.slice(e,t.getStart());let n=s.length-s.trimStart().length
 ;n?i.overwrite(e,e+n,u):i.appendLeft(e,u)}}
-for(const n of t.statements)if(h(n),e.matchesModifier(n,s.ModifierFlags.ExportDefault)&&(s.isFunctionDeclaration(n)||s.isClassDeclaration(n))){
+for(const n of t.statements)if(l(n),e.matchesModifier(n,s.ModifierFlags.ExportDefault)&&(s.isFunctionDeclaration(n)||s.isClassDeclaration(n))){
 if(n.name)continue;o||(o=p("export_default"))
 ;const t=n.getChildren(),e=t.findIndex((t=>t.kind===s.SyntaxKind.ClassKeyword||t.kind===s.SyntaxKind.FunctionKeyword)),r=t[e],c=t[e+1]
 ;c.kind>=s.SyntaxKind.FirstPunctuation&&c.kind<=s.SyntaxKind.LastPunctuation?i.appendLeft(c.getStart(),o):i.appendRight(r.getEnd()," "+o)
 }for(const t of a.values()){const e=t.pop()[0];for(const s of t)i.move(s[0],s[1],e)}
 o&&i.append(`\nexport default ${o};\n`),r.size&&i.append(`\nexport { ${[...r].join(", ")} };\n`)
-;for(const[t,e]of c.entries())i.prepend(`import * as ${e} from "${t}";\n`);const u=new Set,l=t.getLineStarts()
-;for(const e of t.typeReferenceDirectives){u.add(e.fileName);const{line:s}=t.getLineAndCharacterOfPosition(e.pos),n=l[s]
+;for(const[t,e]of c.entries())i.prepend(`import * as ${e} from "${t}";\n`);const u=new Set,h=t.getLineStarts()
+;for(const e of t.typeReferenceDirectives){u.add(e.fileName);const{line:s}=t.getLineAndCharacterOfPosition(e.pos),n=h[s]
 ;let r=t.getLineEndOfPosition(e.pos);"\n"==i.slice(r,r+1)&&(r+=1),i.remove(n,r)}return{code:i,typeReferences:u}
-;function h(t){if(s.forEachChild(t,h),s.isImportTypeNode(t)){
+;function l(t){if(s.forEachChild(t,l),s.isImportTypeNode(t)){
 if(!s.isLiteralTypeNode(t.argument)||!s.isStringLiteral(t.argument.literal))throw new UnsupportedSyntaxError(t,"inline imports should have a literal argument")
 ;const e=t.argument.literal.text,n=t.getChildren(),r=n.find((t=>t.kind===s.SyntaxKind.ImportKeyword)).getStart()
 ;let o=t.getEnd();const a=n.find((t=>t.kind===s.SyntaxKind.DotToken||t.kind===s.SyntaxKind.LessThanToken))
@@ -755,11 +772,11 @@ F([J(),C("design:type",TypeScriptCompiler)],RollupPluginDefinitionBundler.protot
 F([J(),C("design:type",ProjectService)],RollupPluginDefinitionBundler.prototype,"project",void 0),
 F([J(),C("design:type",CachedModuleService)],RollupPluginDefinitionBundler.prototype,"module",void 0),
 F([J(),C("design:type",TypeScriptLibrary)],RollupPluginDefinitionBundler.prototype,"tslib",void 0)
-;class RollupService extends et{bundleScripts(t,e,s){const i=[];i.push(this.scriptBundler.createPlugin(t)),
+;class RollupService extends st{bundleScripts(t,e,s){const i=[];i.push(this.scriptBundler.createPlugin(t)),
 (t.shouldMangle||t.shouldCompress)&&i.push(this.terser.createPlugin(t,s)),
 t.shouldBeautify&&i.push(this.prettier.createPlugin(t));const n={input:e,external:t.project.importModuleNames||[],
 plugins:i},r=s?".mjs":".js",o=s?"esm":"cjs",a={banner:t.project.getHeader(),preferConst:!0,entryFileNames:"[name]"+r,
-chunkFileNames:this.fs.joinPath(t.libraryDirName,"[hash].chunk"+r),dir:t.outputDir,format:o}
+chunkFileNames:this.fs.joinPath(t.libraryDirName,"[hash].chunk"+r),dir:t.outputDir,format:o,exports:"named"}
 ;return c.rollup(n).then((e=>e.write(a).then((e=>{if(!s)return this.findAndFixBinaryFiles(t,e)}))))}bundleTypes(t,e){
 const{outputDir:s}=t,i={input:e,external:t.project.importModuleNames||[],
 plugins:[this.definitionBundler.createPlugin(t)]},n={banner:t.project.getHeader(),preferConst:!0,
@@ -773,18 +790,18 @@ F([J(),C("design:type",RollupPluginScriptBundler)],RollupService.prototype,"scri
 F([J(),C("design:type",RollupPluginDefinitionBundler)],RollupService.prototype,"definitionBundler",void 0),
 F([J(),C("design:type",class RollupPluginPrettier{createPlugin(t){const e=t.project.packageInfo.prettier
 ;let s=t.defaultPrettierConfig;return e&&(s=Object.assign(s,e)),{name:"rollup-plugin-prettier",
-renderChunk:t=>l.format(t,s)}}
+renderChunk:t=>h.format(t,s)}}
 })],RollupService.prototype,"prettier",void 0),F([J(),C("design:type",class RollupPluginTerser{createPlugin(t,e=!1){
 let s;switch(t.target){case"es2015":s=2015;break;case"es2016":s=2016;break;case"es2017":s=2017;break;case"es2018":s=2018
 ;break;case"es2019":s=2019;break;case"es2020":case"esnext":s=2020;break;default:
-console.log(z("Build target only support ES2015 or later (e.g. 2015,2016,2017,2018,2019,2020)")),process.exit(1)}
+console.log(H("Build target only support ES2015 or later (e.g. 2015,2016,2017,2018,2019,2020)")),process.exit(1)}
 const i={ecma:s,compress:!1,mangle:!1,format:{ascii_only:!1,max_line_len:120}};return t.shouldMangle&&(i.mangle={
 keep_classnames:!0,keep_fnames:!1,properties:{builtins:!1,debug:!1,keep_quoted:!0,regex:/^_/,
 reserved:["__agent","__decorate","__metadata","__param"]},module:e}),t.shouldCompress&&(i.compress={keep_classnames:!0,
 keep_fnames:!1,keep_fargs:!1,keep_infinity:!0,module:e,passes:2}),u.terser(i)}
 })],RollupService.prototype,"terser",void 0);class BundleBuilder{async build(t){
-const e={},s={},i={},n={},r=t.project.findBinFiles(t.binaryDirName),o=t.project.findLibraryFiles(t.libraryDirName),c=t.project.findMainFile()
-;if(r.map((([t,s])=>{e[t]=s})),o.map((([t,i])=>{e[t]=i,s[t]=i})),c){const[t,r]=c;e[t]=r,s[t]=r,n[t]=r,i[t]=St(r)}
+const e={},s={},i={},n=t.project.findBinFiles(t.binaryDirName),r=t.project.findLibraryFiles(t.libraryDirName),o=t.project.findMainFile()
+;if(n.map((([t,s])=>{e[t]=s})),r.map((([t,i])=>{e[t]=i,s[t]=i})),o){const[t,n]=o;e[t]=n,s[t]=n,i[t]=St(n)}
 console.log("Start bundle es modules..."),Object.keys(s).length?(console.time("Bundle es modules"),
 await this.rollup.bundleScripts(t,s,!0),console.timeEnd("Bundle es modules")):console.log("skip build es modules"),
 console.log("Start bundle scripts..."),Object.keys(e).length?(console.time("Bundle scripts"),
@@ -809,13 +826,13 @@ F([J(),C("design:type",TypeScript)],OptimizorBuilder.prototype,"ts",void 0);clas
 return await this.compiler.build(t),await this.configurationBuilder.build(t),await this.artifactBuilder.build(t),
 await this.packageBuilder.build(t),await this.bundleBuilder.build(t),await this.packageFileBuilder.build(t),
 t.shouldCompress&&await this.optimizor.build(t),t}}function wt(){
-r.lt(process.version,"12.0.0")?console.log(z("ERROR")):(console.log(),
-console.log(z("███████╗ ██████╗  ██████╗   ██████╗  ██████╗")),
-console.log(z("██╔════╝ ██╔══██╗ ██╔══██╗ ██╔═══██╗ ██╔══██╗")),
-console.log(z("█████╗   ██████╔╝ ██████╔╝ ██║   ██║ ██████╔╝")),
-console.log(z("██╔══╝   ██╔══██╗ ██╔══██╗ ██║   ██║ ██╔══██╗")),
-console.log(z("███████╗ ██║  ██║ ██║  ██║ ╚██████╔╝ ██║  ██║")),
-console.log(z("╚══════╝ ╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝  ╚═╝  ╚═╝")),console.log())}function bt(t,e=new Date){
+r.lt(process.version,"12.0.0")?console.log(H("ERROR")):(console.log(),
+console.log(H("███████╗ ██████╗  ██████╗   ██████╗  ██████╗")),
+console.log(H("██╔════╝ ██╔══██╗ ██╔══██╗ ██╔═══██╗ ██╔══██╗")),
+console.log(H("█████╗   ██████╔╝ ██████╔╝ ██║   ██║ ██████╔╝")),
+console.log(H("██╔══╝   ██╔══██╗ ██╔══██╗ ██║   ██║ ██╔══██╗")),
+console.log(H("███████╗ ██║  ██║ ██║  ██║ ╚██████╔╝ ██║  ██║")),
+console.log(H("╚══════╝ ╚═╝  ╚═╝ ╚═╝  ╚═╝  ╚═════╝  ╚═╝  ╚═╝")),console.log())}function bt(t,e=new Date){
 const s=(e.getTime()-t.getTime())/1e3
 ;return s<5?"just now":s<60?Math.floor(s)+" seconds ago":s<3600?Math.floor(s/60)+" minutes ago":(s/3600).toFixed(2)+" hours ago"
 }F([J(),C("design:type",ConfigurationBuilder)],NodeProjectBuilder.prototype,"configurationBuilder",void 0),
@@ -825,23 +842,23 @@ F([J(),C("design:type",PackageFileBuilder)],NodeProjectBuilder.prototype,"packag
 F([J(),C("design:type",BundleBuilder)],NodeProjectBuilder.prototype,"bundleBuilder",void 0),
 F([J(),C("design:type",TypeScriptCompiler)],NodeProjectBuilder.prototype,"compiler",void 0),
 F([J(),C("design:type",OptimizorBuilder)],NodeProjectBuilder.prototype,"optimizor",void 0)
-;class BuildService extends et{async info(t){const e=[];!function(t){
-r.lt(process.version,"12.0.0")?console.log(Z("TSB@"+t)):(console.log(),console.log(Z("████████╗ ███████╗ ██████╗ ")),
-console.log(Z("╚══██╔══╝ ██╔════╝ ██╔══██╗")),console.log(Z("   ██║    ███████╗ ██████╔╝")),
-console.log(Z("   ██║    ╚════██║ ██╔══██╗")),console.log(Z("   ██║    ███████║ ██████╔╝")),
-console.log(Z("   ╚═╝    ╚══════╝ ╚═════╝ "),Z("@"+t)),console.log())}(this.cli.version)
+;class BuildService extends st{async info(t){const e=[];!function(t){
+r.lt(process.version,"12.0.0")?console.log(Q("TSB@"+t)):(console.log(),console.log(Q("████████╗ ███████╗ ██████╗ ")),
+console.log(Q("╚══██╔══╝ ██╔════╝ ██╔══██╗")),console.log(Q("   ██║    ███████╗ ██████╔╝")),
+console.log(Q("   ██║    ╚════██║ ██╔══██╗")),console.log(Q("   ██║    ███████║ ██████╔╝")),
+console.log(Q("   ╚═╝    ╚══════╝ ╚═════╝ "),Q("@"+t)),console.log())}(this.cli.version)
 ;const s=r.coerce(process.version).version;e.push(["Time",t.timestamp.toISOString()]);const i=t.project,n=i.packageInfo
-;e.push(["Package",n.name]);let o=n.version;t.version!==n.version&&(o=o+" → "+Z(t.version)),e.push(["Version",o])
+;e.push(["Package",n.name]);let o=n.version;t.version!==n.version&&(o=o+" → "+Q(t.version)),e.push(["Version",o])
 ;const c=this.ts.version;let a="",u=""
 ;n.dependencies&&n.dependencies.typescript?u=n.dependencies.typescript:n.devDependencies&&n.devDependencies.typescript?u=n.devDependencies.typescript:n.engines&&n.engines.typescript&&(u=n.engines.typescript),
-u&&(a=`${c} (require ${u})`,r.satisfies(c,u)||(a=H(a))),e.push(["TypeScript Version",a||c]);let l=""
-;if(i.packageInfo.engines){const t=i.packageInfo.engines.node;t&&(l=`${s} (require ${t})`,r.satisfies(s,t)||(l=H(l)))}
-e.push(["Node.JS Version",l||s]),e.push(["Configuration",t.configuration]),e.push(["Target",t.target]),
+u&&(a=`${c} (require ${u})`,r.satisfies(c,u)||(a=V(a))),e.push(["TypeScript Version",a||c]);let h=""
+;if(i.packageInfo.engines){const t=i.packageInfo.engines.node;t&&(h=`${s} (require ${t})`,r.satisfies(s,t)||(h=V(h)))}
+e.push(["Node.JS Version",h||s]),e.push(["Configuration",t.configuration]),e.push(["Target",t.target]),
 e.push(["Working Path",t.workingDir]),e.push(["Input Path",t.inputDir]),e.push(["Output Path",t.outputDir])
-;const h=i.repository,p=null==h?void 0:h.getHead(),d=h?h.getCommit(p):"",f=null==h?void 0:h.getReferenceTime(p)
-;if(e.push(["Git Path",h?h.path:""]),
-e.push(["Git Branch",h?h.getHead():""]),e.push(["Git Branch Update",f?f.toISOString()+" ("+bt(f,t.timestamp)+")":""]),
-e.push(["Git Commit",d||""]),e.push(["Git Commit Short",d?d.slice(-7):""]),e.push(["Git Repository",h?h.getURL():""]),
+;const l=i.repository,p=null==l?void 0:l.getHead(),d=l?l.getCommit(p):"",f=null==l?void 0:l.getReferenceTime(p)
+;if(e.push(["Git Path",l?l.path:""]),
+e.push(["Git Branch",l?l.getHead():""]),e.push(["Git Branch Update",f?f.toISOString()+" ("+bt(f,t.timestamp)+")":""]),
+e.push(["Git Commit",d||""]),e.push(["Git Commit Short",d?d.slice(-7):""]),e.push(["Git Repository",l?l.getURL():""]),
 t.inputDir==t.outputDir)throw new Error("Output dir can not be the same with input dir")
 ;Reflect.ownKeys(t.tsCompilerOptions)&&e.push(["Compiler Options",t.tsCompilerOptions])
 ;const g=e.reduce(((t,[e])=>e.length>t?e.length:t),20)
@@ -852,23 +869,23 @@ await this.printOutputFile(t),t}}F([J(),C("design:type",ProjectService)],BuildSe
 F([J(),C("design:type",NodeProjectBuilder)],BuildService.prototype,"projectBuilder",void 0)
 ;let Pt=class TypeScriptBundler{async main(){const t=this.cli,e=require("commander")
 ;e.version(t.version,"-v, --version","Print version information and quit").usage("[options] COMMAND").description("A typescript bundler"),
-e.command("info").description("Return information of current project").option("--prod","Sets the build configuration as mangle:1, beautify:1, compress:1, inline:1, configuration:production, target:es2018").option("--rc [rel]",'Same as --prod but add suffix "rc" to release version').option("--dev [rel]",'Same as --prod but add suffix "dev.YYYYMMDD" to release version').option("--insiders [rel]",'Same as --prod but add suffix "insiders.YYYYMMDD" to release version').option("-m, --mangle","Mangle output. default is no").option("-b, --beautify","Beautify output. default is no").option("-c, --compress","Compress output. default is no").option("-i, --inline","Inline devDependencies if requires. default is no").option("--configuration <name>","Sets the build configuration to the giving target. default is development").option("--target <target>","Sets ECMAScript version to build, e.g. es2015, es2016, es2017, es2018, es2019, es2020, es2021. default is es2018").option("--release <rel>","Add suffix -[rel].YYYYMMDD to package version. default no suffix").option("--decorator","Generate decorator. Overwrites settings in tsconfig.json").option("--no-decorator","Do not generate decorator. Overwrites settings in tsconfig.json").option("--metadata","Generate metadata. Overwrites settings in tsconfig.json").option("--no-metadata","Do not generate metadata. Overwrites settings in tsconfig.json").option("--in <input>","Sets the input folder. default is current directory").option("--out <output>","Sets the output folder. default is release").action((async t=>this.build.info(new rt(t)))),
+e.command("info").description("Return information of current project").option("--prod","Sets the build configuration as mangle:1, beautify:1, compress:1, inline:1, configuration:production, target:es2018").option("--rc [rel]",'Same as --prod but add suffix "rc" to release version').option("--dev [rel]",'Same as --prod but add suffix "dev.YYYYMMDD" to release version').option("--insiders [rel]",'Same as --prod but add suffix "insiders.YYYYMMDD" to release version').option("-m, --mangle","Mangle output. default is no").option("-b, --beautify","Beautify output. default is no").option("-c, --compress","Compress output. default is no").option("-i, --inline","Inline devDependencies if requires. default is no").option("--configuration <name>","Sets the build configuration to the giving target. default is development").option("--target <target>","Sets ECMAScript version to build, e.g. es2015, es2016, es2017, es2018, es2019, es2020, es2021. default is es2018").option("--release <rel>","Add suffix -[rel].YYYYMMDD to package version. default no suffix").option("--decorator","Generate decorator. Overwrites settings in tsconfig.json").option("--no-decorator","Do not generate decorator. Overwrites settings in tsconfig.json").option("--metadata","Generate metadata. Overwrites settings in tsconfig.json").option("--no-metadata","Do not generate metadata. Overwrites settings in tsconfig.json").option("--in <input>","Sets the input folder. default is current directory").option("--out <output>","Sets the output folder. default is release").action((async t=>this.build.info(new ot(t)))),
 e.command("build",{isDefault:!0
-}).description("Build and bundle typescript project").option("--prod","Sets the build configuration as mangle:1, beautify:1, compress:1, inline:1, configuration:production, target:es2018").option("--rc [rel]",'Same as --prod but add suffix "rc" to release version').option("--dev [rel]",'Same as --prod but add suffix "dev.YYYYMMDD" to release version').option("--insiders [rel]",'Same as --prod but add suffix "insiders.YYYYMMDD" to release version').option("-m, --mangle","Mangle output. default is no").option("-b, --beautify","Beautify output. default is no").option("-c, --compress","Compress output. default is no").option("-i, --inline","Inline devDependencies if requires. default is no").option("--configuration <name>","Sets the build configuration to the giving target. default is development").option("--target <target>","Sets ECMAScript version to build, e.g. es2015, es2016, es2017, es2018, es2019, es2020, es2021. default is es2018").option("--release <rel>","Add suffix -[rel].YYYYMMDD to package version. default no suffix").option("--decorator","Generate decorator. Overwrites settings in tsconfig.json").option("--no-decorator","Do not generate decorator. Overwrites settings in tsconfig.json").option("--metadata","Generate metadata. Overwrites settings in tsconfig.json").option("--no-metadata","Do not generate metadata. Overwrites settings in tsconfig.json").option("--in <input>","Sets the input folder. default is current directory").option("--out <output>","Sets the output folder. default is release").action((async t=>this.build.build(new rt(t)).then((t=>{
+}).description("Build and bundle typescript project").option("--prod","Sets the build configuration as mangle:1, beautify:1, compress:1, inline:1, configuration:production, target:es2018").option("--rc [rel]",'Same as --prod but add suffix "rc" to release version').option("--dev [rel]",'Same as --prod but add suffix "dev.YYYYMMDD" to release version').option("--insiders [rel]",'Same as --prod but add suffix "insiders.YYYYMMDD" to release version').option("-m, --mangle","Mangle output. default is no").option("-b, --beautify","Beautify output. default is no").option("-c, --compress","Compress output. default is no").option("-i, --inline","Inline devDependencies if requires. default is no").option("--configuration <name>","Sets the build configuration to the giving target. default is development").option("--target <target>","Sets ECMAScript version to build, e.g. es2015, es2016, es2017, es2018, es2019, es2020, es2021. default is es2018").option("--release <rel>","Add suffix -[rel].YYYYMMDD to package version. default no suffix").option("--decorator","Generate decorator. Overwrites settings in tsconfig.json").option("--no-decorator","Do not generate decorator. Overwrites settings in tsconfig.json").option("--metadata","Generate metadata. Overwrites settings in tsconfig.json").option("--no-metadata","Do not generate metadata. Overwrites settings in tsconfig.json").option("--in <input>","Sets the input folder. default is current directory").option("--out <output>","Sets the output folder. default is release").action((async t=>this.build.build(new ot(t)).then((t=>{
 const e=Date.now()-t.timestamp.getTime();var s
-;s=String(e/1e3)+"s",r.lt(process.version,"12.0.0")?console.log(V("OK"),V(s)):(console.log(),
-console.log(V(" ██████╗   ██╗  ██╗")),console.log(V("██╔═══██╗  ██║ ██╔╝")),console.log(V("██║   ██║  █████╔╝")),
-console.log(V("██║   ██║  ██╔═██╗")),console.log(V("╚██████╔╝  ██║  ██╗")),console.log(V(" ╚═════╝   ╚═╝  ╚═╝"),V(s)),
-console.log())})))),e.arguments("<command>").action((t=>{e.outputHelp(),console.log("  "+z(`Unknown command ${H(t)}.`)),
+;s=String(e/1e3)+"s",r.lt(process.version,"12.0.0")?console.log(Z("OK"),Z(s)):(console.log(),
+console.log(Z(" ██████╗   ██╗  ██╗")),console.log(Z("██╔═══██╗  ██║ ██╔╝")),console.log(Z("██║   ██║  █████╔╝")),
+console.log(Z("██║   ██║  ██╔═██╗")),console.log(Z("╚██████╔╝  ██║  ██╗")),console.log(Z(" ╚═════╝   ╚═╝  ╚═╝"),Z(s)),
+console.log())})))),e.arguments("<command>").action((t=>{e.outputHelp(),console.log("  "+H(`Unknown command ${V(t)}.`)),
 console.log()})),e.on("--help",(()=>{console.log(),console.log(`  Run '${function(...t){
 return d.default.cyan(t.join(" "))}("tsb COMMAND --help")}' for more information on a command.`),console.log()})),
 e.commands.forEach((t=>t.on("--help",(()=>console.log()))));const s=(t,s)=>{e.Command.prototype[t]=function(...e){
-"unknownOption"===t&&this.i||(this.outputHelp(),console.log("  "+z(s(...e))),console.log(),process.exit(1))}}
-;s("missingArgument",(t=>`Missing required argument ${H(`<${t}>`)}.`)),
-s("unknownOption",(t=>`Unknown option ${H(t)}.`)),
-s("optionMissingArgument",((t,e)=>"Missing required argument for option "+H(t.flags)+(e?", got "+H(e):"")));try{
-e.parseAsync().catch((function(t){wt(),console.log(z("Build was interrupted")),console.log(z(t.stack||t.message))}))
-}catch(t){wt(),console.log(z("Program error")),console.log(z(t.stack||t.message))}}}
+"unknownOption"===t&&this.i||(this.outputHelp(),console.log("  "+H(s(...e))),console.log(),process.exit(1))}}
+;s("missingArgument",(t=>`Missing required argument ${V(`<${t}>`)}.`)),
+s("unknownOption",(t=>`Unknown option ${V(t)}.`)),
+s("optionMissingArgument",((t,e)=>"Missing required argument for option "+V(t.flags)+(e?", got "+V(e):"")));try{
+e.parseAsync().catch((function(t){wt(),console.log(H("Build was interrupted")),console.log(H(t.stack||t.message))}))
+}catch(t){wt(),console.log(H("Program error")),console.log(H(t.stack||t.message))}}}
 ;F([J(),C("design:type",Environment)],Pt.prototype,"env",void 0),
 F([J(),C("design:type",TypeScript)],Pt.prototype,"ts",void 0),
 F([J(),C("design:type",CliService)],Pt.prototype,"cli",void 0),
