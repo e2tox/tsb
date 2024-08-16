@@ -223,7 +223,7 @@ getCurrentDirectory:i.getCurrentDirectory,getNewLine:()=>i.newLine}}readFile(t){
 return this.runtime.readConfigFile(t,this.runtime.sys.readFile)}resolve(e,s){return t.resolve(e,s)}formatDiagnostics(t){
 return this.runtime.formatDiagnosticsWithColorAndContext(t,this.formatDiagnosticsHost)}}
 E([J(),C("design:type",Environment)],TypeScript.prototype,"env",void 0);class CliService{get name(){return"tsb"}
-get version(){return"2.0.0"}get timestamp(){return"2024-08-16T03:23:09.181Z"}get commit(){return"e431841"}}
+get version(){return"2.0.0"}get timestamp(){return"2024-08-16T09:34:13.207Z"}get commit(){return"6516bb3"}}
 function tt(e){const s=[];let i=e;for(;i;){s.push(i);const e=t.dirname(i);if(e===i)break;i=e}return s.reverse()}
 class TypeScriptFileSystem{constructor(){this.runtime=this.ts.runtime,this.sys=this.runtime.sys}get args(){
 return this.sys.args}get newLine(){return this.sys.newLine}get useCaseSensitiveFileNames(){
@@ -263,10 +263,11 @@ const e=this.fs.readFile(t,"utf-8");if(e)return require("ini").parse(e)}write(t,
 this.fs.writeFile(t,require("ini").stringify(e))}}
 E([J(),C("design:type",TypeScriptFileSystem)],IniFileParser.prototype,"fs",void 0);let st=class Repository extends et{
 constructor(t){if(super(),!t||!this.fs.fileExists(t,"HEAD"))throw new Error("Invalid repository path");this.path=t}
-getType(){return"git"}getHead(){const t=this.fs.readFile(this.fs.resolvePath(this.path,"HEAD"))
-;if(t&&t.length>4)return t.slice(4).trim()}getReferenceTime(t){if(t){const e=this.fs.resolvePath(this.path,t)
-;return i.statSync(e).ctime}}getCommit(t){if(t){const e=this.fs.readFile(this.fs.resolvePath(this.path,t))
-;if(e&&e.length>4)return e.trim()}}getURL(){var t;const e=this.ini.read(this.fs.resolvePath(this.path,"config"))
+getType(){return"git"}getHead(){const t=this.fs.readFile(this.fs.resolvePath(this.path,"HEAD"));if(t&&t.length>4){
+const e=t.slice(4).trim();return this.fs.fileExists(this.path,e)?e:void 0}}getReferenceTime(t){if(t){
+const e=this.fs.resolvePath(this.path,t);return i.statSync(e).ctime}}getCommit(t){if(t){
+const e=this.fs.readFile(this.fs.resolvePath(this.path,t));if(e&&e.length>4)return e.trim()}}getURL(){var t
+;const e=this.ini.read(this.fs.resolvePath(this.path,"config"))
 ;if(e)return null===(t=e['remote "origin"'])||void 0===t?void 0:t.url}}
 ;E([J(),C("design:type",IniFileParser)],st.prototype,"ini",void 0),st=B([L(),C("design:paramtypes",[String])],st)
 ;let it=class ModuleService extends et{getModuleByNameDirectory(e,s){let i=this.searchPackageJsonByDirectory(e,s);if(i){
@@ -882,13 +883,13 @@ h&&(a=`${c} (require ${h})`,r.satisfies(c,h)||(a=z(a))),e.push(["TypeScript Vers
 ;if(i.packageInfo.engines){const t=i.packageInfo.engines.node;t&&(u=`${s} (require ${t})`,r.satisfies(s,t)||(u=z(u)))}
 e.push(["Node.JS Version",u||s]),e.push(["Configuration",t.configuration]),e.push(["Target",t.target]),
 e.push(["Working Path",t.workingDir]),e.push(["Input Path",t.inputDir]),e.push(["Output Path",t.outputDir])
-;const l=i.repository,p=null==l?void 0:l.getHead(),d=l?l.getCommit(p):"",f=null==l?void 0:l.getReferenceTime(p)
-;if(e.push(["Git Path",l?l.path:""]),
-e.push(["Git Branch",l?l.getHead():""]),e.push(["Git Branch Update",f?f.toISOString()+" ("+bt(f,t.timestamp)+")":""]),
-e.push(["Git Commit",d||""]),e.push(["Git Commit Short",d?d.slice(-7):""]),e.push(["Git Repository",l?l.getURL():""]),
+;const l=i.repository,p=null==l?void 0:l.getHead(),d=(null==l?void 0:l.getCommit(p))||"",f=null==l?void 0:l.getReferenceTime(p)
+;if(e.push(["Git Path",(null==l?void 0:l.path)||""]),e.push(["Git Branch",(null==l?void 0:l.getHead())||""]),
+e.push(["Git Branch Update",f?f.toISOString()+" ("+bt(f,t.timestamp)+")":""]),e.push(["Git Commit",d||""]),
+e.push(["Git Commit Short",d?d.slice(-7):""]),e.push(["Git Repository",(null==l?void 0:l.getURL())||""]),
 t.inputDir==t.outputDir)throw new Error("Output dir can not be the same with input dir")
 ;Reflect.ownKeys(t.tsCompilerOptions)&&e.push(["Compiler Options",t.tsCompilerOptions])
-;const g=e.reduce(((t,[e])=>e.length>t?e.length:t),20)
+;const g=e.reduce(((t,[e,s])=>e.length>t?e.length:t),20)
 ;for(const[t,s]of e)console.log((t.toUpperCase()+" ").padEnd(g+3,"౼"),s)}async printOutputFile(t){
 console.log("Generated files....");const e=t.outputDir.length+1,s=this.fs.readDirectory(t.outputDir);for(const t of s){
 const s=t.slice(e);console.log("+",s)}}async build(t){return await this.info(t),await this.projectBuilder.build(t),
