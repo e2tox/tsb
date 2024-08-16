@@ -223,10 +223,11 @@ getCurrentDirectory:i.getCurrentDirectory,getNewLine:()=>i.newLine}}readFile(t){
 return this.runtime.readConfigFile(t,this.runtime.sys.readFile)}resolve(e,s){return t.resolve(e,s)}formatDiagnostics(t){
 return this.runtime.formatDiagnosticsWithColorAndContext(t,this.formatDiagnosticsHost)}}
 E([J(),C("design:type",Environment)],TypeScript.prototype,"env",void 0);class CliService{get name(){return"tsb"}
-get version(){return"2.0.0"}get timestamp(){return"2024-08-15T10:30:04.703Z"}}function tt(e){const s=[];let i=e
-;for(;i;){s.push(i);const e=t.dirname(i);if(e===i)break;i=e}return s.reverse()}class TypeScriptFileSystem{constructor(){
-this.runtime=this.ts.runtime,this.sys=this.runtime.sys}get args(){return this.sys.args}get newLine(){
-return this.sys.newLine}get useCaseSensitiveFileNames(){return this.sys.useCaseSensitiveFileNames}mkdir(t){const e=tt(t)
+get version(){return"2.0.0"}get timestamp(){return"2024-08-16T03:23:09.181Z"}get commit(){return"e431841"}}
+function tt(e){const s=[];let i=e;for(;i;){s.push(i);const e=t.dirname(i);if(e===i)break;i=e}return s.reverse()}
+class TypeScriptFileSystem{constructor(){this.runtime=this.ts.runtime,this.sys=this.runtime.sys}get args(){
+return this.sys.args}get newLine(){return this.sys.newLine}get useCaseSensitiveFileNames(){
+return this.sys.useCaseSensitiveFileNames}mkdir(t){const e=tt(t)
 ;for(const t of e)this.directoryExists(t)||this.createDirectory(t)}copy(e,s){this.mkdir(t.dirname(s)),
 i.copyFileSync(e,s)}exists(t,...e){if(e.length){const s=this.resolvePath(t,...e)
 ;return this.sys.fileExists(s)||this.sys.directoryExists(s)}return this.sys.fileExists(t)||this.sys.directoryExists(t)}
@@ -358,9 +359,13 @@ const e=this.beforeVisitor(t),s=this.tsc.visitEachChild(e,(t=>this.visitor(t,e))
 ;return this.afterVisitor(s,e,t)}}class MacroTransformer extends BaseTransformer{constructor(t,e,s){
 super(t.ts.runtime,e,s),this.buildContext=t,this.program=e,this.transformationContext=s,
 this.macroTokenRegex=/\*\s*replace::(.*?)\s*\*/}findMacroToken(t){const e=t.match(this.macroTokenRegex)
-;return e?e[1]:void 0}replaceMacroValue(t){const e=this.buildContext
-;return"release.version"===t?e.version:"release.name"===t?e.project.packageInfo.name:"release.timestamp"===t?e.timestamp.toISOString():void 0
-}visitor(t,e){if(this.tsc.isReturnStatement(t)){if(t.getChildCount()>=2){const s=t.getChildAt(1)
+;return e?e[1]:void 0}replaceMacroValue(t){var e,s,i,n;const r=this.buildContext
+;if("release.version"===t)return r.version;if("release.name"===t)return r.project.packageInfo.name
+;if("release.timestamp"===t)return r.timestamp.toISOString()
+;if("release.vcs.branch"===t)return(null===(e=r.project.repository)||void 0===e?void 0:e.getHead())||""
+;if("release.vcs.commit"===t){const t=null===(s=r.project.repository)||void 0===s?void 0:s.getHead()
+;return t?null===(n=null===(i=r.project.repository)||void 0===i?void 0:i.getCommit(t))||void 0===n?void 0:n.slice(-7):""
+}}visitor(t,e){if(this.tsc.isReturnStatement(t)){if(t.getChildCount()>=2){const s=t.getChildAt(1)
 ;if(this.tsc.isStringLiteral(s)){const t=s.getLeadingTriviaWidth(e);if(t>6){
 const e=s.getFullText().slice(0,t),i=this.findMacroToken(e);if(i){const t=this.replaceMacroValue(i)
 ;if(console.log(`Found macro replace::${i} with value "${t}"`),t){
